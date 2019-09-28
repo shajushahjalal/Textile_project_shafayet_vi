@@ -228,4 +228,35 @@ return [
 
     ],
 
+    //Backlisted Important Credenttial From Debag mode
+    'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'DB_USERNAME',
+            'DB_DATABASE',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+            'PAYPAL_CLIENT_ID',
+            'PAYPAL_SECRET',
+            'TAWKTO_API_KEY',
+        ],
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_USERNAME',
+            'DB_DATABASE',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+            'TAWKTO_API_KEY',
+        ],
+        '_POST' => [
+            'password',
+        ],
+    ],
+
 ];
