@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Composer\Semver\Comparator;
 use App\SystemInfo;
 use DB;
+use Exception;
 
 class InstallController extends Controller
 {
@@ -35,14 +36,17 @@ class InstallController extends Controller
         try{
             DB::beginTransaction();
             $this->RunInstall();            
-            $this->GenerateAutomaticData();
-            $this->UpdateConfigaration();            
-            $this->AddSystemInfo($request);
+            $this->GenerateAutomaticData();  
+            $this->UpdateConfigaration();                     
+            $this->AddSystemInfo($request);             
             DB::commit();
-            return redirect('/login')->with('success','Application Installed Successfully. Login Email:admin@admin.com Password:admin1');
-        } catch (\Exception $ex) {
+            return redirect('/login')->with('success','Application Installed Successfully. Login Email:admin@admin.com Password:Admin@01');
+        } catch (Exception $ex) {
             DB::rollback();
-            return redirect('/install')->with('error','Something went wrong. Failed to Install.'.$ex);
+            if(file_exists('config/setup.php')){
+                unlink('config/setup.php');
+            }
+            return redirect('/install')->with('error','Something went wrong. Failed to Install.');
         }        
     }
     
@@ -59,12 +63,13 @@ class InstallController extends Controller
         $data->zipCode = $request->zipCode;
         $data->address = $request->address;
         $data->country = $request->country;
+        $data->state = $request->state;
         $data->shippingCost = $this->makeNumber($request->shippingCost);
         $data->currency = $request->currency;
         $data->dateFormat = $request->dateFormat;
         $data->version = '1.0.0';
-        $data->logo = $this->UploadImage($request, 'logo', $this->logoImageDir, 350,60, $data->logo);
-        $data->favicon = $this->UploadImage($request, 'favicon', $this->logoImageDir, 35,35, $data->favicon);
+        $data->logo = $this->UploadImage($request, 'logo', $this->logoDir, 350,60, $data->logo);
+        $data->favicon = $this->UploadImage($request, 'favicon', $this->logoDir, 35,35, $data->favicon);
         $data->save();
     }
     

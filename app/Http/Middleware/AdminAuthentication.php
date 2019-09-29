@@ -19,12 +19,12 @@ class AdminAuthentication
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->is_admin == 1){
-                return $next($request);
-            } else {
-                return abort(404); 
-            }
-            
+            // if(Auth::user()->is_admin == 1){
+            //     return $next($request);
+            // } else {
+            //     return abort(404); 
+            // }
+            return $next($request);
         }
         Session::put('previous_url',URL::previous());
         return redirect('login');

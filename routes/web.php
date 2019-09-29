@@ -30,25 +30,25 @@ Route::middleware(['IsInstalled'])->group(function(){
     Route::get('view/product/{pnm}','FrontEnd\ProductController@viewProductDetails');
     Route::get('view-category/{cnm}','FrontEnd\ProductController@showAllProducts');
     Route::get('view-category/{cnm}/{scnm}','FrontEnd\ProductController@showAllProducts');
-    Route::get('product/get-quantity','FrontEnd\ProductController@getQuantity')->name('product_qty_check');
-    Route::get('search','FrontEnd\ProductController@searchProduct');
+    //Route::get('product/get-quantity','FrontEnd\ProductController@getQuantity')->name('product_qty_check');
+    // Route::get('search','FrontEnd\ProductController@searchProduct');
     
     /*--------------------------------------------------------------------------
      *  Cart Page || 
      *  Show Cart | Update, Modify & Checkout 
      *-------------------------------------------------------------------------*/
-    Route::post('cart/add-cart','FrontEnd\CartController@addCart')->name('add_cart');
-    Route::get('cart/view','FrontEnd\CartController@index');
-    Route::post('cart/view','FrontEnd\CartController@updateCart');
-    Route::get('cart/remove/{id}','FrontEnd\CartController@removeItem');
-    Route::get('cart/store','FrontEnd\CartController@storeInDB');
+    // Route::post('cart/add-cart','FrontEnd\CartController@addCart')->name('add_cart');
+    // Route::get('cart/view','FrontEnd\CartController@index');
+    // Route::post('cart/view','FrontEnd\CartController@updateCart');
+    // Route::get('cart/remove/{id}','FrontEnd\CartController@removeItem');
+    // Route::get('cart/store','FrontEnd\CartController@storeInDB');
 
     /*--------------------------------------------------------------------------
      *  Account Create 
      *  Account Info Update 
      *--------------------------------------------------------------------------*/
-    Route::get('customer/open-account','FrontEnd\CustomerController@createAccount');
-    Route::post('customer/open-account','FrontEnd\CustomerController@store');
+    // Route::get('customer/open-account','FrontEnd\CustomerController@createAccount');
+    // Route::post('customer/open-account','FrontEnd\CustomerController@store');
 
     /*---------------------------------------------------------------------------
     |   Others Page
@@ -56,7 +56,7 @@ Route::middleware(['IsInstalled'])->group(function(){
     *---------------------------------------------------------------------------*/
     Route::get('open-footer/{id}/{name}','FrontEnd\OtherController@showfooterPage');
     Route::post('subscribe/','FrontEnd\SubscribeController@store');
-    Route::post('get/discount','FrontEnd\SubscribeController@getDiscount');
+    // Route::post('get/discount','FrontEnd\SubscribeController@getDiscount');
  
 });
 
@@ -66,44 +66,45 @@ Route::middleware(['IsInstalled','customer','verified'])->group(function(){
      * Account Section
      * Update Info
      *-------------------------------------------------------------------------*/
-    Route::get('my-account','FrontEnd\CustomerController@customerAccount');
-    Route::get('account/profile','FrontEnd\CustomerController@userProfile')->name('user-profile');
-    Route::post('my-account/update','FrontEnd\CustomerController@updateProfile');
-    Route::post('my-account/update-password','FrontEnd\CustomerController@updatePassword');
-    Route::get('wishlist/','FrontEnd\WishlistController@index');
-    Route::get('wishlist/remove/{id}','FrontEnd\WishlistController@remove');
-    Route::get('wishlist/add/{id}','FrontEnd\WishlistController@store');
+    // Route::get('my-account','FrontEnd\CustomerController@customerAccount');
+    // Route::get('account/profile','FrontEnd\CustomerController@userProfile')->name('user-profile');
+    // Route::post('my-account/update','FrontEnd\CustomerController@updateProfile');
+    // Route::post('my-account/update-password','FrontEnd\CustomerController@updatePassword');
+    // Route::get('wishlist/','FrontEnd\WishlistController@index');
+    // Route::get('wishlist/remove/{id}','FrontEnd\WishlistController@remove');
+    // Route::get('wishlist/add/{id}','FrontEnd\WishlistController@store');
 
     /*--------------------------------------------------------------------------
      * Order Confirmation
      * Order Details | Checkout Page
      *-------------------------------------------------------------------------*/
-    Route::get('checkout','FrontEnd\CartController@checkout');
-    Route::post('coupon/apply','FrontEnd\OrderController@checkCoupon');
-    Route::post('order/place','FrontEnd\OrderController@placeOrder');
-    Route::get('order/{id}/confirm','FrontEnd\OrderController@confirmOrder');
-    Route::get('user-order','FrontEnd\OrderController@userOrderList')->name('user-order');
-    Route::get('order/{id}/details','FrontEnd\OrderController@orderDetails');
-    Route::get('order/{id}/delete','FrontEnd\OrderController@orderDelete');
-    Route::post('review/add','FrontEnd\ProductController@addReview');
-    Route::get('order/{id}/order-confirmation','FrontEnd\OrderController@orderConfirmation');
+    // Route::get('checkout','FrontEnd\CartController@checkout');
+    // Route::post('coupon/apply','FrontEnd\OrderController@checkCoupon');
+    // Route::post('order/place','FrontEnd\OrderController@placeOrder');
+    // Route::get('order/{id}/confirm','FrontEnd\OrderController@confirmOrder');
+    // Route::get('user-order','FrontEnd\OrderController@userOrderList')->name('user-order');
+    // Route::get('order/{id}/details','FrontEnd\OrderController@orderDetails');
+    // Route::get('order/{id}/delete','FrontEnd\OrderController@orderDelete');
+    // Route::post('review/add','FrontEnd\ProductController@addReview');
+    // Route::get('order/{id}/order-confirmation','FrontEnd\OrderController@orderConfirmation');
     
     /*----------------------------------------------------------------------------
     |   Paypal Payments
     |----------------------------------------------------------------------------*/
-    Route::get('payment/{order_id}/paypal','PaypalPaymentController@payWithPaypal');
-    Route::get('payment/paypal/status','PaypalPaymentController@getPaymentStatus');
+    // Route::get('payment/{order_id}/paypal','PaypalPaymentController@payWithPaypal');
+    // Route::get('payment/paypal/status','PaypalPaymentController@getPaymentStatus');
 
     /*-----------------------------------------------------------------------------
     |   Logout
     |-----------------------------------------------------------------------------*/
-    Route::get('/logout-user','Auth\LoginController@logout');
+    // Route::get('/logout-user','Auth\LoginController@logout');
 
 });
 
 
-Route::middleware(['IsInstalled','admin'])->group( function(){
-	Route::get('/home', 'HomeController@backEndIndex')->name('home');
+Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
+
+	    Route::get('/home', 'HomeController@backEndIndex')->name('home');
         Route::get('/logout', 'Auth\LoginController@logout');
         
         /*

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\SocialMedia;
+use App\SystemInfo;
 use Illuminate\Support\ServiceProvider;
 use View;
 

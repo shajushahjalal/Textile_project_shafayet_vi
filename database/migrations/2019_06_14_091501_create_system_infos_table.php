@@ -22,7 +22,7 @@ class CreateSystemInfosTable extends Migration
             $table->string('city',100)->nullable();
             $table->string('zipCode',50)->nullable();            
             $table->string('address')->nullable();
-            $table->string('state',100);
+            $table->string('state',100)->nullable();
             $table->string('country',100);
             $table->double('shippingCost',10,2)->default(0);
             $table->string('currency');
