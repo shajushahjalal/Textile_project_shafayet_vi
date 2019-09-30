@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Branding;
+use App\FeatureProduct;
+use App\Slider;
+use App\SliderVideo;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -12,12 +17,30 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     // FrontEnd Home Page
     public function index()
     {
-        return view('frontEnd.home.index');
+        $prams['feature_products'] = FeatureProduct::where('publicationStatus',1)->orderBy('position','ASC')->get();
+        $prams['brands'] = Branding::all();
+        $prams['slider']  = Slider::where('publicationStatus',1)->get();
+        $prams['sliderVideo'] = SliderVideo::first();
+        
+        return view('frontEnd.home.index',$prams);
     }
 
+    // BackEnd Home Page
     public function backEndIndex(){
         return view('backEnd.dashboard.index');
+    }
+
+    // Show Galary
+    public function showGalary(){
+        return view('frontEnd.galary.galary');
+    }
+
+    //Show Contact Page
+    public function showContactPage(){
+        return view('frontEnd.contact.contact');
     }
 }

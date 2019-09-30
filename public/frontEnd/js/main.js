@@ -163,4 +163,33 @@ Template Name: Raza
         return false;
     });
 
+    // Feature Product
+    $('.feature-section .owl-carousel').owlCarousel({
+        loop:true,
+        autoplay:true,
+        autoplayTimeout:3500,
+        responsiveClass:true,
+        autoplayHoverPause:true,
+        responsive:{
+            0:{
+                items:1,
+            },
+            576:{
+                items:2,
+            },
+            768:{
+                items:2,
+            },
+            912:{
+                items:3,
+            },
+            1200:{
+                items:3,
+            },
+            1600:{
+                items:4,
+            }
+        }
+    });
+
 })(jQuery);

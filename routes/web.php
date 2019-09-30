@@ -21,6 +21,10 @@ Route::middleware(['IsInstalled'])->group(function(){
     
     Route::get('/','HomeController@index'); 
     Route::get('schedule/run','HomeController@scheduleRun'); 
+    Route::get('galary','HomeController@showGalary');
+    Route::get('contact-us','HomeController@showContactPage');
+    Route::post('contact-us','HomeController@showContactPage')->name('contact_message_send');
+    
     
     /*--------------------------------------------------------------------------
      * Show All Product From Category 
@@ -142,6 +146,7 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         //Slider Section
         Route::get('slider/','BackEnd\SliderController@show');
         Route::post('slider','BackEnd\SliderController@store');
+        Route::post('slider/video','BackEnd\SliderController@addVideo');
         Route::get('slider/{id}/edit','BackEnd\SliderController@edit');
         Route::get('slider/{id}/delete','BackEnd\SliderController@delete');
 

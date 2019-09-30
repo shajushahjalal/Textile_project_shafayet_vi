@@ -13,58 +13,44 @@
 <div class="hero-banner hero-banner-bg-4">
     <div class="hero-banner-inside">
         <video autoplay muted loop id="myVideo">
-            <source src="{{asset('public/frontEnd/1.mp4')}}" type="video/mp4">
+            <source src="{{asset(isset($sliderVideo->video)?$sliderVideo->video:'')}}" type="video/mp4">
         </video>
         <h3 class=" banner-title "> TRENDLINK BD LTD</h3>	
     </div>
 </div>
         
  <!-- feature section start -->
- <div class="feature-section">
-    <div class="container">
+ <div class="feature-section mt-60">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="feature-item position-relative ">
-                    <div class="feature-item_content ">
-                        <h4 class="feature-title">Feature Name</h4>
-                        <div class="feature-content">
-                            <p>Wy can’t grow. We help communities inpumps.</p>
-                            <br>
-                            <a class="" href="#">See More</a>
+            <div class="col-12">
+                <div class="owl-carousel owl-theme owl-loaded">                    
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage">
+                            @foreach($feature_products as $feature)
+                                <div class="owl-item">
+                                    <div class="feature-item position-relative" style="background:url('{{$feature->image}}')">
+                                        <div class="feature-item_content ">
+                                            <h4 class="feature-title">{{$feature->heading}}</h4>
+                                            <div class="feature-content">
+                                                <p>{{$feature->text}}</p>
+                                                <br>
+                                                <a href="{{url($feature->link)}}">{{$feature->buttonText}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-            </div> <!-- col end -->
-            <div class="col-lg-4">
-                <div class="feature-item-2 position-relative ">
-                    <div class="feature-item_content ">
-                        <h4 class="feature-title">Feature Name </h4>
-                        <div class="feature-content ">
-                            <p>Without water, help communities install hand pumps.</p>
-                            <br>
-                            <a class="" href="#">See More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- col end -->
-            <div class="col-lg-4">
-                <div class="feature-item-3 position-relative ">
-                    <div class="feature-item_content ">
-                        <h4 class="feature-title">Feature Name</h4>
-                        <div class="feature-content ">
-                            <p>Without wathelp communities install hand pumps. </p>
-                            <br>
-                            <a class="" href="#">See More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- col end -->
+                </div>  
+            </div>
         </div>
     </div>
 </div>
 <!-- feature section end -->
 <!-- prodact category  section start -->
-<div class="category-section pad-120  bg2 parallax overlay overlay--2 ">
+<div class="category-section pad-120  bg2 parallax overlay overlay--2 " id="portfolio">
     <div class="container">
             <div class="row">
                     <div class="col-12">
@@ -204,7 +190,7 @@
 <!-- we belive section end -->
 
 <!-- goal section start -->
-<div class="causes-section pad-30 mb-100">
+<div class="causes-section pad-30 mb-100" id="about-us">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -291,21 +277,11 @@
                 <!-- row end -->
                 <div class="row">
                     <div class="js-client owl-carousel client-item">
+                        @foreach($brands as $brand)
                         <div class="item">
-                            <a href="#"><img src="assets/images/client/1.1.png" alt="brand img" /></a>
-                        </div>
-                        <div class="item">
-                            <a href="#"><img src="assets/images/client/2.1.png" alt="brand img" /></a>
-                        </div>
-                        <div class="item">
-                            <a href="#"><img src="assets/images/client/3.1.png" alt="brand img" /></a>
-                        </div>
-                        <div class="item">
-                            <a href="#"><img src="assets/images/client/4.1.png" alt="brand img" /></a>
-                        </div>
-                        <div class="item">
-                            <a href="#"><img src="assets/images/client/5.png" alt="brand img" /></a>
-                        </div>
+                            <a href="{{ url($brand->link) }}"><img src="{{ asset($brand->image) }}" alt="brand img" /></a>
+                        </div> 
+                        @endforeach                       
                     </div>
                 </div>
                 <!-- row end -->

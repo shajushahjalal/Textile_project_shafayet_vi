@@ -5,12 +5,10 @@ namespace App\Http\Controllers\BackEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\FeatureProduct;
-use App\FileUpload;
 use DB;
 
 class FeatureProductController extends Controller
 {
-    use FileUpload;
     
     //Show Index Page
     public function index() {
@@ -27,12 +25,14 @@ class FeatureProductController extends Controller
             $data = FeatureProduct::find($request->id);
         }        
         try{
-            DB::beginTransaction();            
+            DB::beginTransaction();   
+            $data->heading = $request->heading;
+            $data->text = $request->text;         
             $data->buttonText = $request->buttonText;
             $data->link = $request->link;
             $data->position = $request->position;
             $data->publicationStatus = $request->publicationStatus;
-            $data->image = $this->UploadImage($request, 'image', $this->featureImageDir, 360, 480, $data->image);
+            $data->image = $this->UploadImage($request, 'image', $this->featureDir, null, 420, $data->image);
             $data->save();
             DB::commit(); 
             return redirect('/feature-products')->with('success','Add Successfully');

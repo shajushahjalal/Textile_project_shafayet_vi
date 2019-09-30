@@ -8,6 +8,7 @@ use Yajra\DataTables\DataTables;
 use App\Category;
 use App\SubCategory;
 use DB;
+use Exception;
 
 class CategoryController extends Controller
 {
@@ -76,11 +77,11 @@ class CategoryController extends Controller
             $category->haveSubCategory = $request->haveSubCategory;
             $category->publicationStatus = $request->publicationStatus;
             $category->position = $request->position;
-            $category->categoryImage = $this->UploadImage($request, 'categoryImage', $this->categoryImageDir, 268, 185, $category->categoryImage);
+            $category->categoryImage = $this->UploadImage($request, 'categoryImage', $this->categoryDir, 300, null, $category->categoryImage);
             $category->save();
             DB::commit();
             return response()->json('success');               
-        } catch (\Exception $ex) {            
+        } catch (Exception $ex) {            
             DB::rollback();
             return response()->json('error');    
         }
@@ -173,11 +174,11 @@ class CategoryController extends Controller
             $data->categoryId = $request->categoryId;
             $data->publicationStatus = $request->publicationStatus;
             $data->position = $request->position;
-            $data->subCategoryImage = $this->UploadImage($request, 'subCategoryImage', $this->categoryImageDir, 268, 185, $data->subCategoryImage);
+            $data->subCategoryImage = $this->UploadImage($request, 'subCategoryImage', $this->categoryDir, 268, 185, $data->subCategoryImage);
             $data->save();
             DB::commit();            
             return response()->json('success');          
-        } catch (\Exception $ex) {            
+        } catch (Exception $ex) {            
             DB::rollback();
             return response()->json('error'); 
         }

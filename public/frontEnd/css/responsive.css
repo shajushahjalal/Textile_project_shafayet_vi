@@ -1,4 +1,12 @@
 /* 05 responsive styles */
+
+@media screen and (max-width: 766.98px) {
+  .navik-header .logo {
+      text-align: left;
+      padding: 10px 0px;
+    }
+}
+
 @media screen and (max-width: 1024px) and (min-width: 767px) {
   /* testimonial start */
   .testimonial-tab .nav .nav-item:nth-child(1) {

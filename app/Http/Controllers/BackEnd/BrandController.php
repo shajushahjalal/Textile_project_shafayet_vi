@@ -73,7 +73,7 @@ class BrandController extends Controller
         $data->link = $request->link;
         $data->position = $request->position;
         $data->publicationStatus = $request->publicationStatus;        
-        $data->image = $this->UploadImage($request,'image',$this->brandingImage,'650','520',$data->image);
+        $data->image = $this->UploadImage($request,'image',$this->brandingImage,null,'380',$data->image);
         $data->save();
         $output = ['status'=>'success','message'=>'Brand Information Add Successfully'];
         return response()->json($output);

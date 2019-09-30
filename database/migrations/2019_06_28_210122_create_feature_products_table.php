@@ -15,6 +15,8 @@ class CreateFeatureProductsTable extends Migration
     {
         Schema::create('feature_products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('heading');
+            $table->string('text');
             $table->string('buttonText');
             $table->string('link');
             $table->integer('position');

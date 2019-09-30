@@ -9,7 +9,6 @@ use App\Http\Controllers\FrontEnd\CustomerController;
 use Illuminate\Support\Facades\DB;
 use App\SystemInfo;
 use App\User;
-use App\NumberFormat;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +16,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
 {
-    use NumberFormat;
     
     /*
      * Website Settingd
@@ -43,12 +41,12 @@ class AdminController extends Controller
             $data->currency = $request->currency;
             $data->dateFormat = $request->dateFormat;
             $data->version = '1.0.0';
-            $data->logo = $this->UploadImage($request, 'logo', $this->logoImageDir, 300, null, $data->logo);
-            $data->favicon = $this->UploadImage($request, 'favicon', $this->logoImageDir, 35,35, $data->favicon);
+            $data->logo = $this->UploadImage($request, 'logo', $this->logoDir, null, 60, $data->logo);
+            $data->favicon = $this->UploadImage($request, 'favicon', $this->logoDir, 35,35, $data->favicon);
             $data->save();
             DB::commit();
             return back()->with('success','Information Update successfully');
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             DB::rollback();
             return back()->with('error','Something went wrong');
         }
@@ -139,7 +137,7 @@ class AdminController extends Controller
                 return $this->index;
             })
             ->addColumn('role',function($data){
-                return $data->is_admin == 1 ? '<span class="badge badge-danger">Admin</span>':'<span class="badge badge-success">Customer</span>';
+                return $data->is_admin == 1 ? '<span class="badge badge-danger">Admin</span>':'<span class="badge badge-success">User</span>';
             })
             ->addColumn('action',function($data){
                 return '<a href="'.url('user/profile/'.$data->id).'" > <span class="fas fa-edit"></span> Edit </a>';

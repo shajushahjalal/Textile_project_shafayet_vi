@@ -192,7 +192,7 @@
                                     </a>
                                 </li>
 
-                               <!-- Feature Media -->
+                               <!-- Feature Product -->
                                 <li class="pcoded-hasmenu">
                                     <a href="{{url('/feature-products')}}">
                                         <span class="pcoded-micon"><i class="fas fa-cogs"></i></span>
@@ -200,6 +200,7 @@
                                     </a>
                                 </li>
                                 <!-- Coupons -->
+                                <!--
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fab fa-discourse"></i></span>
@@ -214,8 +215,9 @@
                                         </li>
                                     </ul>
                                 </li>
-
+                            -->
                                 <!-- Coupons -->
+                                <!--
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fas fa-compact-disc"></i></span>
@@ -230,6 +232,7 @@
                                         </li> --}}
                                     </ul>
                                 </li>
+                            -->
 
                                 <!-- Social Media -->
                                 <li class="pcoded-hasmenu">
@@ -239,6 +242,7 @@
                                     </a>
                                 </li>
                                 <!-- Newsletter Section -->
+                                <!--
                                  <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fas fa-newspaper"></i></span>
@@ -253,6 +257,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                            -->
                                 <!-- Footer Menu Section -->
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -265,7 +270,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <!-- Order Section -->
+                                <!-- Order Section -->                                
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fab fa-first-order"></i></span>
@@ -284,6 +289,7 @@
                                     </ul>
                                 </li>
                                 <!-- Report Section -->
+                                <!--
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fas fa-chart-line"></i></span>
@@ -298,6 +304,7 @@
                                         </li>                                       
                                     </ul>
                                 </li>
+                                -->
                             </ul>                            
                         </div>
                     </nav>

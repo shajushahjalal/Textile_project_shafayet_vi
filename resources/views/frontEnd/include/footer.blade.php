@@ -86,7 +86,7 @@
     <!-- Jquery Ui Js -->
     <script src="{{asset('public/frontEnd/js/vendor/jquery-ui.min.js')}}"></script>
     <!--contact form Js-->
-    <script src="{{asset('public/frontEndjs/vendor/contact.js')}}"></script>
+    <script src="{{asset('public/frontEnd/js/vendor/contact.js')}}"></script>
     <script src="{{asset('public/frontEnd/js/vendor/validator.min.js')}}"></script>
     <!-- Wow Js -->
     <script src="{{asset('public/frontEnd/js/vendor/wow.min.js')}}"></script>
