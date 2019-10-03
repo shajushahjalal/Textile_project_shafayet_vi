@@ -186,6 +186,20 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         Route::get('feature-products/{id}/edit','BackEnd\FeatureProductController@edit');
         Route::get('feature-products/{id}/delete','BackEnd\FeatureProductController@delete');
 
+        // Galary
+        Route::get('galary/menu','BackEnd\GalaryController@galaryMenuIndex');
+        Route::get('galary/menu/create','BackEnd\GalaryController@createMenu');
+        Route::post('galary/menu/create','BackEnd\GalaryController@storeMenu');
+        Route::get('galary/menu/edit/{id}','BackEnd\GalaryController@editMenu');
+        Route::get('galary/menu/delete/{id}','BackEnd\GalaryController@deleteMenu');
+
+        Route::get('galary/content','BackEnd\GalaryController@galaryContentIndex');
+        Route::get('galary/content/create','BackEnd\GalaryController@galaryContentCreate');
+        Route::post('galary/content/create','BackEnd\GalaryController@storeContentCreate');
+        Route::get('galary/content/edit/{id}','BackEnd\GalaryController@editContent');
+        Route::get('galary/content/delete/{id}','BackEnd\GalaryController@deleteContent');
+
+
         //coupon Code
         Route::get('coupon','BackEnd\CouponController@index');
         Route::get('coupon/create','BackEnd\CouponController@create');

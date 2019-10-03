@@ -39,20 +39,21 @@
         <div class="portfolio_menu justify-content-center">
             <ul>
                 <li class="active" data-filter="*">All</li>
-                <li data-filter=".web">Woven</li>
-                <li data-filter=".seo">Knit</li>
+                @foreach($galaryMenus as $menu)
+                <li data-filter=".{{str_replace([',','-'],'',$menu->menuName)}}">{{$menu->menuName}}</li>
+                @endforeach               
             </ul>
         </div>
         </div>
         <div class="portfolio_item ">
-            <div class="row">               
-                <div class="col-sm-6 col-md-3 col-xl-4 item web">
-                <img class="img-fluid" src="https://placehold.it/150x150">
-                </div>
-                <div class="col-sm-6 col-md-3 col-xl-4 item seo">
-                <img class="img-fluid" src="https://placehold.it/150x150">
-                </div>
-                
+            <div class="row">   
+                @foreach($galaryMenus as $menu)  
+                    @foreach($menu->galaryContent as $items)          
+                    <div class="col-sm-6 col-md-3 col-xl-4 item {{str_replace([',','-'],'',$menu->menuName)}}">
+                        <img class="img-fluid" src="{{$items->image}}">
+                    </div>
+                    @endforeach
+                @endforeach                
             </div>
         </div>
     </div>

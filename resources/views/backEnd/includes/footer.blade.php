@@ -58,8 +58,7 @@
             Swal.fire({
                 type: 'success',
                 title: sms === null ?'successfully':sms,
-                showConfirmButton: false,
-                timer: 3000
+                showConfirmButton: true,
             }); 
         }
     </script>

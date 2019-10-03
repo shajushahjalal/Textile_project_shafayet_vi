@@ -247,10 +247,10 @@
             </div> <!-- col end -->
             <div class="col-lg-6">
                     <div class="care-catgory ">
-                       <h5 class="text-white" > Give your share</h5>
-                       <h3 class="text-white" >To show you care!</h3>
-                       <p class="text-white" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eveniet fugiat possimus eum tempora, deleniti neque! Est esse, in molestiae velit officiis nulla numquam libero, enim, ipsa non nisi ratione.</p>
-                       <a href="#" class="donate-btn btn">click now</a>
+                        <h5 class="text-white" > Give your share</h5>
+                        <h3 class="text-white" >To show you care!</h3>
+                        <p class="text-white" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eveniet fugiat possimus eum tempora, deleniti neque! Est esse, in molestiae velit officiis nulla numquam libero, enim, ipsa non nisi ratione.</p>
+                        <a href="{{url('contact-us')}}" class="donate-btn btn">click now</a>
                     </div>
             </div> <!-- col end -->
 

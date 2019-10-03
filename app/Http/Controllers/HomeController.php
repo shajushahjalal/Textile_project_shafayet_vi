@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Branding;
 use App\FeatureProduct;
+use App\GalaryMenu;
 use App\Product;
 use App\Slider;
 use App\SliderVideo;
@@ -38,7 +39,8 @@ class HomeController extends Controller
 
     // Show Galary
     public function showGalary(){
-        return view('frontEnd.galary.galary');
+        $prams['galaryMenus'] = GalaryMenu::where('publicationStatus',1)->get();
+        return view('frontEnd.galary.galary',$prams);
     }
 
     //Show Contact Page

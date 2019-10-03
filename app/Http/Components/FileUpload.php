@@ -19,14 +19,15 @@ trait FileUpload {
     /*
      * Define Directories
      */
-    protected  $productDir = "storage/uploads/productImage/";
-    protected  $logoDir = "storage/uploads/logo/";
-    protected  $sliderDir = "storage/uploads/slider/";
+    protected  $productDir  = "storage/uploads/productImage/";
+    protected  $logoDir     = "storage/uploads/logo/";
+    protected  $sliderDir   = "storage/uploads/slider/";
     protected  $categoryDir = "storage/uploads/category/";
-    protected  $featureDir = "storage/uploads/feature/";
-    protected  $userDir    = "storage/uploads/users/";
-    protected  $contentImage    = "storage/uploads/pages/";
-    protected  $brandingImage    = "storage/uploads/brands/";
+    protected  $featureDir  = "storage/uploads/feature/";
+    protected  $userDir     = "storage/uploads/users/";
+    protected  $contentImage = "storage/uploads/pages/";
+    protected  $brandingImage = "storage/uploads/brands/";
+    protected  $galaryImage = "storage/uploads/galary/";
 
 
     /*

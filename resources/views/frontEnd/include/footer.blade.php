@@ -32,7 +32,7 @@
                                 <ul class="footer-contact mt-40">
                                     @foreach($footerMenus as $menu)
                                         @if($menu->show == 1)
-                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}">{{$menu->menuName}}</a></li>
+                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}" class="text-white" >{{$menu->menuName}}</a></li>
                                         @endif
                                     @endforeach                                    
                                 </ul>
@@ -46,7 +46,7 @@
                                 <ul class="footer-contact mt-40">
                                     @foreach($footerMenus as $menu)
                                         @if($menu->show == 2)
-                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}">{{$menu->menuName}}</a></li>
+                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}" class="text-white" >{{$menu->menuName}}</a></li>
                                         @endif
                                     @endforeach                                    
                                 </ul>
@@ -60,7 +60,7 @@
                                 <ul class="footer-contact mt-40">
                                     @foreach($footerMenus as $menu)
                                         @if($menu->show == 3)
-                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}">{{$menu->menuName}}</a></li>
+                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}" class="text-white" >{{$menu->menuName}}</a></li>
                                         @endif
                                     @endforeach                                    
                                 </ul>
@@ -75,7 +75,7 @@
         <!-- Footer Last Part Start -->
         <div class="container-fluid bg-black">
             <div class="row">
-                <div class="col-12 col-lg-10 col-xl-8 offset-lg-1 offset-xl-2 mt-20 mb-20">
+                <div class="col-12 col-lg-10 offset-lg-1 mt-20 mb-20">
                     <div class="row">
                         <div class="col-12 text-center">
                             <a href="{{url('/')}}">

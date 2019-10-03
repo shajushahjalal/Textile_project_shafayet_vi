@@ -184,14 +184,31 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <!-- product Review -->
+
+                                <!-- Galary -->
+                                <!-- Product Section -->
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fas fa-star-half-alt"></i></span>
+                                        <span class="pcoded-mtext" > Galary</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li>
+                                            <a href="{{url('galary/menu')}}"><i class="fas fa-list"></i>Galary Menu </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('galary/content')}}"><i class="fas fa-plus-circle"></i> Add Galary Content</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- product Review 
                                 <li class="pcoded-hasmenu">
                                     <a href="{{url('product/review')}}">
                                         <span class="pcoded-micon"><i class="fas fa-star-half-alt"></i></span>
                                         <span class="pcoded-mtext">Product Review</span>
                                     </a>
                                 </li>
-
+                            -->
                                <!-- Feature Product -->
                                 <li class="pcoded-hasmenu">
                                     <a href="{{url('/feature-products')}}">
@@ -268,7 +285,8 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <!-- Order Section -->                                
+                                <!-- Order Section -->  
+                                <!--                              
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fab fa-first-order"></i></span>
@@ -286,6 +304,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                            -->
                                 <!-- Report Section -->
                                 <!--
                                 <li class="pcoded-hasmenu">
