@@ -39,10 +39,10 @@
                     <!--Navigation menu-->
                     <nav class="navik-menu separate-line submenu-top-border submenu-scale">
                         <ul class="list-unstyled">
-                            <li><a href="{{url('/')}}"> Home </a></li>
+                            <li class="current-menu"><a href="{{url('/')}}"> Home </a></li>
                             @foreach($categories as $category)
                                 @if($category->haveSubCategory == 1)
-                                <li class="current-menu"><a href="{{url('view-category/'.$category->categoryName)}}"> {{$category->categoryName}} </a>
+                                <li class=""><a href="{{url('view-category/'.$category->categoryName)}}"> {{$category->categoryName}} </a>
                                     <ul class="list-unstyled" >
                                     @foreach($category->subCategory as $subCategory)
                                     <li><a href="{{url('view-category/'.$category->categoryName.'/'.$subCategory->subCategoryName)}}"> {{$subCategory->subCategoryName}} </a></li>

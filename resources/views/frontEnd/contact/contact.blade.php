@@ -6,12 +6,19 @@
 @stop
 @section('mainPart')
 <!--== Page Title Area Start ==-->
-<section class="page-title-area overlay overlay--2" style="background: url('{{asset('public/frontEnd/images/bg/bg4.jpg')}}'); background-size:cover; background-position:  center; ">
+<section class="page-title-area overlay overlay--2" style="padding:20px 0px 0px 0px; ">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 m-auto text-center">
                 <div class="page-title-content">
-                    <h1 class="h2">Contact With US </h1>
+                    <h1 class="h2">Contact US</h1> 
+                    <!--== Page Title Area End ==-->
+                    <nav class="text-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="display: inline-flex;">
+                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact </li>
+                        </ol>
+                    </nav>                
                 </div>
             </div>
         </div>
@@ -19,12 +26,7 @@
 </section>
 
 <!--== Page Title Area End ==-->
-<nav class="text-center" aria-label="breadcrumb">
-    <ol class="breadcrumb   ">
-        <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="fas fa-home"></i> Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Contact </li>
-    </ol>
-</nav>
+
 
 <div class="container-fluid">
     <div class="row">

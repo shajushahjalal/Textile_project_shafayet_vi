@@ -52,36 +52,31 @@
 <!-- prodact category  section start -->
 <div class="category-section pad-120  bg2 parallax overlay overlay--2 " id="portfolio">
     <div class="container">
-            <div class="row">
-                    <div class="col-12">
-                      <div class="section-title  ">
-                          <h3 class=" text-black">PRODUCT CATEGORY </h3>
-                          <p class="text-center text-black">  Meliore electram sapientem sit eu, eam ex vero laudem ornatus. Nec an <br> adipisci nominati consetetur,</p>
-                      </div>  
-                    </div>
-            </div> <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title  ">
+                    <h3 class=" text-black">PRODUCTS  </h3>
+                    <p class="text-center text-black"> </p>
+                </div>  
+            </div>
+        </div> <!-- end row -->
     </div>
  
     <!-- Swiper -->
     <div class="swiper-container ">
-            <div class="swiper-wrapper">
-            
-            <div class="swiper-slide">  <a  href="#">  <img src="assets/img/2.jpg" alt="">  </a> <h3> Name  </h3> </div>
-            <div class="swiper-slide">  <a  href="#">  <img src="assets/img/1.jpg" alt="">  </a> <h3> Name  </h3> </div>
-            <div class="swiper-slide">  <a  href="#">  <img src="assets/img/3.jpg" alt="">  </a> <h3> Name  </h3></div>
-            <div class="swiper-slide">  <a  href="#">  <img src="assets/img/4.jpg" alt="">  </a><h3> Name  </h3> </div>
-            <div class="swiper-slide">  <a  href="#">  <img src="assets/img/5.jpg" alt="">  </a> <h3> Name  </h3></div>
-            <div class="swiper-slide">  <a  href="#">  <img src="assets/img/6.jpg" alt="">  </a><h3> Name  </h3> </div>
-            </div>
-            
+        <div class="swiper-wrapper">
+                @foreach ($products as $product)
+                <div class="swiper-slide"> 
+                    <a  href="{{url('view/product/'.$product->productName)}}"> <img src="{{asset($product->image)}}" > </a> <h3> {{$product->productName}}  </h3> 
+                </div>
+            @endforeach  
+        </div>            
     </div>
-
 </div>
 
 <!--  prodact category  end -->
-<!-- last product start -->
 
-<div class="blog-section">
+{{-- <div class="blog-section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -141,13 +136,7 @@
             </div><!-- end row -->
         </div> <!-- cont end -->
     
-</div>
-    
-    
-    <!-- last product post End -->
-
-
-
+</div> --}}
 
 <!-- we belive section start -->
 <div class="donation-section pad-120 bg1 parallax overlay overlay--2">
@@ -157,7 +146,7 @@
             <div class="col-12">
               <div class="section-title  ">
                   <h3 class=" text-white"> We belive </h3>
-                  <p class="text-center text-white">  Meliore electram sapientem sit eu, eam ex vero laudem ornatus. Nec an <br> adipisci nominati consetetur,</p>
+                  <p class="text-center text-white"> </p>
               </div>  
             </div>
         </div> <!-- end row -->
@@ -253,7 +242,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="care-pic ">
-                    <img class="caring-img" src="assets/images/care/1.png "  alt="care img">
+                    <img class="caring-img" src="{{url('public/frontEnd//images/care/1.png')}} "  alt="care img">
                 </div>
             </div> <!-- col end -->
             <div class="col-lg-6">

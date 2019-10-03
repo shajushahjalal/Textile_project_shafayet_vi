@@ -61,8 +61,39 @@ label{
 .main-container {
     overflow: hidden;
 }
-
-
+.bg-black{
+    background:#252525;
+}
+.text-aaa{
+    color:#aaa;
+}
+.text-bbb{
+    color:#bbb;
+}
+.text-ccc{
+    color:#ccc;
+}
+.text-ddd{
+    color:#ddd;
+}
+.text-white{
+    color:#fff;
+}
+.font-size-10{
+    font-size: 10px;
+}
+.font-size-11{
+    font-size: 11px;
+}
+.font-size-12{
+    font-size: 12px;
+}
+.font-size-13{
+    font-size: 13px;
+}
+.font-size-14{
+    font-size: 14px;
+}
 /* .container {
     &.container--2 {
         width: 1170px;
@@ -1779,7 +1810,7 @@ h6 {
 
 
   .page-title-area{
-    height: 300px;
+    max-height: 300px;
     margin-top: 90px;
     background-size: cover;
     background-position: center center;
@@ -2033,4 +2064,40 @@ h6 {
 .gradient{
     background: rgba(18, 14, 51, 0.8);
     
+}
+
+.swiper-slide-active img{
+    width: 400px;
+    position: absolute;
+    margin-left: -40px;
+
+}
+.breadcrumb{
+    background: transparent;
+}
+.product-display-gird img{
+    height:200px !important;
+}
+.product-overlap-icons{
+    position: absolute;
+    margin-top: -40px;
+    z-index: 999;
+    width:85%;
+    text-align: center !important;
+    line-height: 30px;
+    vertical-align: center;
+    background: rgb(209, 159, 104,.9)
+}
+.product-overlap-icons a{
+    text-decoration: none;
+    color: #fff;
+}
+.newslater{
+    background: rgb(209, 159, 104,.95);
+    padding:25px 0px 25px 0px;
+}
+.btn-black{
+    background: #1c223a;
+    color:#fff;
+    border:0px;
 }

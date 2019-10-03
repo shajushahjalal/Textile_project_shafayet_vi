@@ -282,3 +282,9 @@
     margin: 0; } }
 
 /* 05 responsive styles */
+
+@media screen and (max-width: 1199.98px) {
+  .page-title-area{
+    margin-top: 0px;
+  }
+}

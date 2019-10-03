@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Branding;
 use App\FeatureProduct;
+use App\Product;
 use App\Slider;
 use App\SliderVideo;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class HomeController extends Controller
         $prams['brands'] = Branding::all();
         $prams['slider']  = Slider::where('publicationStatus',1)->get();
         $prams['sliderVideo'] = SliderVideo::first();
+        $prams['products'] = Product::where('publicationStatus',1)->orderBy('id','ASC')->paginate(20);
         
         return view('frontEnd.home.index',$prams);
     }

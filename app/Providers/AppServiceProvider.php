@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\FooterMenu;
 use App\SocialMedia;
 use App\SystemInfo;
 use Illuminate\Support\ServiceProvider;
@@ -19,16 +20,16 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*',function($view){            
             if(file_exists('config/setup.php')){
-                $system = SystemInfo::first(); 
-                $socialIcon = SocialMedia::where('publicationStatus',1)->orderBy('position','ASC')->get();
-                $view->with(['system' => $system,'socialIcon'=>$socialIcon]);
+                $prams['system'] = SystemInfo::first(); 
+                $prams['socialIcons'] = SocialMedia::where('publicationStatus',1)->orderBy('position','ASC')->get();
+                $prams['categories'] = Category::where('publicationStatus',1)->orderBy('position','ASC')->get();
+                $prams['footerMenus'] = FooterMenu::where('publicationStatus',1)->orderBy('position','ASC')->get();
+                
+                $view->with($prams);
             }
         });
 
-        View::composer('frontEnd.include.menu',function($view){
-            $categories = Category::where('publicationStatus',1)->orderBy('position','ASC')->get();
-            $view->with(['categories' => $categories]);
-        });
+        
     }
 
     /**

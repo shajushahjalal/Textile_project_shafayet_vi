@@ -241,8 +241,7 @@
                                         <span class="pcoded-mtext">Social Media</span>
                                     </a>
                                 </li>
-                                <!-- Newsletter Section -->
-                                <!--
+                                <!-- Newsletter Section -->                    
                                  <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fas fa-newspaper"></i></span>
@@ -257,7 +256,6 @@
                                         </li>
                                     </ul>
                                 </li>
-                            -->
                                 <!-- Footer Menu Section -->
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">

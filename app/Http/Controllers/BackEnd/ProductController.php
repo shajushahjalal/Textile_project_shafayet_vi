@@ -11,7 +11,7 @@ use Yajra\DataTables\DataTables;
 use Auth;
 use DB;
 use App\ProductVariation;
-use PHPUnit\Framework\Constraint\Exception;
+use Exception;
 
 class ProductController extends Controller
 {
@@ -91,11 +91,11 @@ class ProductController extends Controller
         $data->description = $request->description;
         $data->video = $request->video;
         $data->create_by = Auth::user()->id;
-        $data->image = $this->UploadImage($request,'image', $this->productImageDir, 380, null, $data->image);
-        $data->image1 = $this->UploadImage($request,'image1', $this->productImageDir, 380, null, $data->image1);
-        $data->image2 = $this->UploadImage($request,'image2', $this->productImageDir, 380, null, $data->image2);
-        $data->image3 = $this->UploadImage($request,'image3', $this->productImageDir, 380, null, $data->image3);
-        $data->image4 = $this->UploadImage($request,'image4', $this->productImageDir, 380, null, $data->image4);
+        $data->image = $this->UploadImage($request,'image', $this->productDir, null, 320 , $data->image);
+        $data->image1 = $this->UploadImage($request,'image1', $this->productDir, null, 320 , $data->image1);
+        $data->image2 = $this->UploadImage($request,'image2', $this->productDir, null, 320 ,$data->image2);
+        $data->image3 = $this->UploadImage($request,'image3', $this->productDir, null, 320 ,$data->image3);
+        $data->image4 = $this->UploadImage($request,'image4', $this->productDir, null, 320 ,$data->image4);
         $data->save();
         return $data->id;
     }

@@ -192,4 +192,41 @@ Template Name: Raza
         }
     });
 
+    // Submit a from using Ajax
+    $(document).on('submit','#ajax-form',function(e){
+        e.preventDefault();
+        var button = $(this).find('#submit');
+        var prev_btn_text = button.text();
+        button.text('Loading...');
+        button.attr('disabled',true);
+        var data = new FormData($(this)[0]); 
+        $.ajax({
+            method: "POST",
+            url: $(this).attr("action"),
+            dataType: "json",
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success:function(output){
+
+                //hide modal If Exists
+                if(output.modal_id != null){
+                    $('#'+output.modal_id).modal('hide');
+                }
+
+                // Check Status
+                if(output.status == 'success'){
+                    successMessage(output.message, true);                   
+                }else{
+                    errorMessage(output.message);
+                }
+                // Restore Button State and text
+                button.text(prev_btn_text);
+                button.removeAttr('disabled');                
+            }
+        });
+        
+    });
+
 })(jQuery);

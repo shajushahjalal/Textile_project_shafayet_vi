@@ -1,50 +1,68 @@
     <footer> <!-- footer section start -->
+        <!-- Subscripe-part -->
+        <div class="container-fluid newslater">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+                    {!! Form::open(['url' => 'subscribe','method' => 'post','id' => 'ajax-form']) !!}
+                    <div class="row">
+                        <div class="col-3 col-lg-2">
+                            <img src="{{asset($system->logo)}}" class="img-fluid" style="max-height:40px;">
+                        </div>
+                        <div class="col-9 col-lg-10">
+                            <div class="input-group">
+                                <input type="email" name="email" class="form-control no-radious" placeholder="Enter Your Email" required>
+                                <div class="input-group-append">
+                                    <button type="submit" id="submit" class="input-group-text no-radious btn-black">Become a Member</button>
+                                </div>
+                            </div>                                        
+                        </div>
+                    </div>                    
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+        <!-- End-->
         <div class="footer-section pad-120 bg4 parallax overlay overlay--2">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="footer-box">
-                            <h4 class="footer-title">about us</h4>
-                            <div class="footer-box_content mt-40">
-                                <p>Lorem ipsum dolor sit amet, at est duis exerci, id mei tritani interesset nece ssitatibus. Ad per rebum sig niferumque. Ei duo homero iuvaret.</p>
+                            <h4 class="footer-title">Company</h4>
+                            <div class="footer-box_content mt-40">                            
                                 <ul class="footer-contact mt-40">
-                                    <li><i class="fas fa-map-marker-alt"></i><span>Uttara,  Dhaka </span></li>
-                                    <li><i class="fas fa-location-arrow"></i><span>gamestate@gmail.com</span></li>
-                                    <li><i class="fas fa-phone-volume"></i><span>(0075) 8645 319557</span></li>
+                                    @foreach($footerMenus as $menu)
+                                        @if($menu->show == 1)
+                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}">{{$menu->menuName}}</a></li>
+                                        @endif
+                                    @endforeach                                    
                                 </ul>
                             </div>
                         </div>  <!-- footer-box end -->
                     </div> <!-- col end -->
                     <div class="col-lg-4">
                         <div class="footer-box">
-                            <h4 class="footer-title">about us</h4>
-                            <div class="footer-blog mt-40">
-                                <a class="blog-detail pt-20" href="#">
-                                    <img class="img-fluid" src="assets/images/footer/blog/1.jpg" alt="blog image">
-                                    <p class="mb-0">Modus inani quo ad, per clita denique referrentur n</p>
-                                </a>
-                                <a class="blog-detail pt-20" href="#">
-                                    <img class="img-fluid" src="assets/images/footer/blog/2.jpg" alt="blog image">
-                                    <p class="mb-0">Vim at movet admodum tophtus, his ei splendide.</p>
-                                </a>
-                                <a class="blog-detail pt-20" href="#">
-                                    <img class="img-fluid" src="assets/images/footer/blog/3.jpg" alt="blog image">
-                                    <p class="mb-0">Appareat consulatu ea mei, no harum definiebas.</p>
-                                </a>
+                            <h4 class="footer-title">Company</h4>
+                            <div class="footer-box_content mt-40">                            
+                                <ul class="footer-contact mt-40">
+                                    @foreach($footerMenus as $menu)
+                                        @if($menu->show == 2)
+                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}">{{$menu->menuName}}</a></li>
+                                        @endif
+                                    @endforeach                                    
+                                </ul>
                             </div>
                         </div>  <!-- footer-box end -->
                     </div> <!-- col  end -->
                     <div class="col-lg-4">
                         <div class="footer-box">
-                            <h4 class="footer-title">our services</h4>
-                            <div class="footer-service mt-40">
-                                <ul>
-                                    <li>  <a href="#"> Lorem ipsum dolor sit amet.</a> </li>
-                                    <li> <a href="#">SLorem ipsum dolor sit amet</a></li>
-                                    <li> <a href="#">Lorem ipsum dolor sit amet</a> </li>
-                                    <li> <a href="#">ELorem ipsum dolor sit amet</a></li>
-                                    <li><a href="#">Lorem ipsum dolor sit amet</a> </li>
-                                    <li> <a href="#">Lorem ipsum dolor sit amet</a></li>
+                            <h4 class="footer-title">Company</h4>
+                            <div class="footer-box_content mt-40">                            
+                                <ul class="footer-contact mt-40">
+                                    @foreach($footerMenus as $menu)
+                                        @if($menu->show == 3)
+                                        <li> <a href="{{url('open-footer/'.$menu->id.'/'.$menu->menuName)}}">{{$menu->menuName}}</a></li>
+                                        @endif
+                                    @endforeach                                    
                                 </ul>
                             </div>
                         </div>  <!-- footer-box end -->
@@ -53,11 +71,62 @@
                 </div> <!-- row end -->
             </div>
         </div>
-        <div class="container-fluid px-0">
-            <div class="footer-bottom">
-                <p class="text-center">Copy Right &copy; Name. All Rights Reserved</p>
+
+        <!-- Footer Last Part Start -->
+        <div class="container-fluid bg-black">
+            <div class="row">
+                <div class="col-12 col-lg-10 col-xl-8 offset-lg-1 offset-xl-2 mt-20 mb-20">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="{{url('/')}}">
+                                <img src="{{$system->logo}}" class=" img-fluid" >
+                            </a>
+                        </div>                        
+                        <div class="col-6 col-md-3 text-center mt-10">
+                            <div> <i class="far fa-address-book fa-2x"></i> </div>
+                            <h6 class=" text-uppercase mt-2 text-ccc">Address</h6>
+                            <div class="font-size-10  text-aaa"> <address>{{$system->address}} , {{$system->city}} - {{$system->zipCode}}, {{$system->country}} </address> </div>
+                        </div>
+                        <div class="col-6 col-md-3 text-center mt-10">
+                            <div> <i class="far fa-envelope fa-2x"></i> </div>
+                            <h6 class=" text-uppercase mt-2 text-ccc">Email</h6>
+                            <div class="font-size-10  text-aaa">{{$system->email}} </div>
+                        </div>
+                        <div class="col-6 col-md-3 text-center mt-10">
+                            <div> <i class="fas fa-mobile-alt fa-2x"></i> </div>
+                            <h6 class=" text-uppercase mt-2 text-ccc">Phone</h6>
+                            <div class="font-size-10  text-aaa">{{$system->phoneNo}} </div>
+                        </div>
+                        <div class="col-6 col-md-3 text-center mt-10">
+                            <div> <i class="far fa-clock fa-2x"></i> </div>
+                            <h6 class=" text-uppercase mt-2 text-ccc">Working Time</h6>
+                            <div class="font-size-10  text-aaa">SUN - THU <br> 09:00 AM - 05:00 PM</div>
+                        </div>
+                    </div>
+                    <!-- social media & copyright -->
+                    <div class="row">
+                        <div class="col-12">
+                            <hr style="display: block; height: 1px;border: 0; border-top: 1px solid #555;"/>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <ul class="nav footer-icon">
+                                @foreach($socialIcons as $icon)
+                                <li class="nav-item">
+                                    <a class="nav-link text-aaa" href="{{url($icon->link)}}" target="_blank"> <i class="{{$icon->icon}}"></i> </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-aaa font-size-10">
+                                Copy Right &copy; {{Carbon\Carbon::now()->format('Y')}}. All Rights Reserved. Developed By Shahjalal
+                        </div>
+                    </div>
+                    <!-- social media & copyright End-->
+                </div>
             </div>
         </div>
+
+        <!-- Footer Last Part End -->
     </footer> <!-- footer section end -->    
 </div>
     <!-- main-container -->
