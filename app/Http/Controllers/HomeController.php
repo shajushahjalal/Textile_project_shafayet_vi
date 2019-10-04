@@ -27,7 +27,7 @@ class HomeController extends Controller
         $prams['brands'] = Branding::all();
         $prams['slider']  = Slider::where('publicationStatus',1)->get();
         $prams['sliderVideo'] = SliderVideo::first();
-        $prams['products'] = Product::where('publicationStatus',1)->orderBy('id','ASC')->paginate(20);
+        $prams['products'] = Product::where('publicationStatus',1)->orderBy('id','desc')->paginate(20);
         
         return view('frontEnd.home.index',$prams);
     }

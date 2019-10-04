@@ -42,7 +42,7 @@ class ProductController extends Controller
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="'.url('product/'.$data->id.'/view-details').'" > <span class="fa fa-eye"></span> View Details </a>
                             <a class="dropdown-item" href="'.url('product/'.$data->id.'/edit').'" > <span class="fa fa-edit"></span> Edit </a>
-                            <a class="dropdown-item" onclick="return confirm(\'Are you sure to delete?\')" href="'.url('product/'.$data->id.'/delete').'" > <i class="fas fa-trash-alt"></i> Delete </a>
+                            <a class="dropdown-item ajax-click" onclick="return confirm(\'Are you sure to delete?\')" href="'.url('product/'.$data->id.'/delete').'" > <i class="fas fa-trash-alt"></i> Delete </a>
                         </div>
                       </div>';                         
                     })
@@ -124,12 +124,14 @@ class ProductController extends Controller
     // Delete Product Info
     public function deleteProduct($id) {
         try{
-            $data = Product::find($id);
+            $data = Product::findOrFail($id);
             $data->is_delete =1;
             $data->save();
-            return redirect('/product')->with('success','Delete Successfully');
+            $output = ['status'=>'success','message'=>'Product Delete Successfully','table'=>1];
+            return response()->json($output);
         } catch (\Exception $ex) {
-            return back()->with('error','Something went Wrong');
+            $output = ['status'=>'error','message'=>'Something went Wrong','table'=>1];
+            return response()->json($output);
         }
     }
     
@@ -151,7 +153,7 @@ class ProductController extends Controller
                     })->editColumn('image',function($data){           
                         return '<img src="'.asset($data->image).'" width="60px" height="45">';
                     })->addColumn('action',function($data){
-                        return '<a class="btn btn-danger btn-sm" href="'.url('product/'.$data->id.'/restore').'" title="Restore" > <i class="fas fa-reply-all"></i> </a>';                         
+                        return '<a class="btn btn-danger btn-sm ajax-click" href="'.url('product/'.$data->id.'/restore').'" title="Restore" > <i class="fas fa-reply-all"></i> </a>';                         
                     })
                     ->RawColumns(['image','action'])
                     ->make(true);
@@ -165,9 +167,11 @@ class ProductController extends Controller
             $data = Product::find($id);
             $data->is_delete = 0;
             $data->save();
-            return redirect('/product')->with('success','Restore Successfully');
+            $output = ['status'=>'success','message'=>'Restore Successfully','table'=>1];
+            return response()->json($output);            
         } catch (\Exception $ex) {
-            return back()->with('error','Something went Wrong');
+            $output = ['status'=>'error','message'=>'Something went Wrong','table'=>1];
+            return response()->json($output);
         }
     }
     
@@ -336,13 +340,12 @@ class ProductController extends Controller
 
     //Delete Review
     public function deleteReview($id){
-        $data = ProductReview::find($id);
+        $data = ProductReview::findOrFail($id);
         $data->delete();
         $output = [
             'status' => 'success', 'message' => 'Information Update Successfully','table'=>1,
         ];
         return response()->json($output);
-
     }
 
 

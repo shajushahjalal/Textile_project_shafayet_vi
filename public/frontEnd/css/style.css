@@ -2101,3 +2101,10 @@ h6 {
     color:#fff;
     border:0px;
 }
+.product-display-gird .product-show{
+    box-shadow: 1px 3px 5px #aaa;
+    padding: 25px 7px;
+}
+.product-display-gird .product-show:hover{
+    opacity: .8;
+}

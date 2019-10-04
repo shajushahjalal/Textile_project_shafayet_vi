@@ -8,7 +8,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {!! Form::Open(['url' => 'sub-category/create', 'id'=>'edit-category-form' ,'class' =>'form-horizontal','method' => 'POST','files'=>true]) !!}
+        {!! Form::Open(['url' => 'sub-category/create', 'id'=>'ajax-form' ,'class' =>'form-horizontal','method' => 'POST','files'=>true]) !!}
         <div class="modal-body row">
             <div class="col-sm-6 col-12">
                 <div class="form-group">
@@ -74,7 +74,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary"> Update </button>
+          <button type="submit" id="submit" class="btn btn-primary"> Update </button>
         </div>
         {!! Form::close() !!}
     </div>

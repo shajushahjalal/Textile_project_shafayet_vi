@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="card-body table-responsive">
-                <table id="product-table" class="table table-striped ">
+                <table id="table" class="table table-striped ">
                     <thead class="bg-success">
                         <tr>
                             <th>#</th>
@@ -35,10 +35,11 @@
     </div>
 </div>
 
-<script>   
+<script> 
+    var table;
     $(function(){    
         // Load Data via datatable
-        $('#product-table').DataTable({
+        table = $('#table').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! url('product') !!}',

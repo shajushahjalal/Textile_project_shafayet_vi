@@ -8,6 +8,6 @@ class GalaryMenu extends Model
 {
     //
     public function galaryContent(){
-        return $this->hasMany(galaryContent::class,'galary_id','id');
+        return $this->hasMany(GalaryContent::class,'galary_id','id');
     }
 }

@@ -15,7 +15,7 @@
         <video autoplay muted loop id="myVideo">
             <source src="{{asset(isset($sliderVideo->video)?$sliderVideo->video:'')}}" type="video/mp4">
         </video>
-        <h3 class=" banner-title "> TRENDLINK BD LTD</h3>	
+        <h4 class="banner-title "> TRENDLINK BD LTD</h4>	
     </div>
 </div>
         
@@ -50,7 +50,7 @@
 </div>
 <!-- feature section end -->
 <!-- prodact category  section start -->
-<div class="category-section pad-120  bg2 parallax overlay overlay--2 " id="portfolio">
+<div class="category-section" id="portfolio">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -60,18 +60,27 @@
                 </div>  
             </div>
         </div> <!-- end row -->
-    </div>
- 
-    <!-- Swiper -->
-    <div class="swiper-container ">
-        <div class="swiper-wrapper">
-                @foreach ($products as $product)
-                <div class="swiper-slide"> 
-                    <a  href="{{url('view/product/'.$product->productName)}}"> <img src="{{asset($product->image)}}" > </a> <h3> {{$product->productName}}  </h3> 
-                </div>
-            @endforeach  
-        </div>            
-    </div>
+        <div class="row product-display-gird mb-40">
+            @foreach($products as $product)
+            <div class="mt-5 col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 ">
+                <div class="product-show">
+                    <div>
+                        <a href="{{url('view/product/'.$product->productName)}}">
+                            <img src="{{asset($product->image)}}" class=" img-fluid">
+                        </a>
+                    </div>
+                    <div class="text-center product-overlap-icons">
+                        <a href="#"> <i class="far fa-heart fa-lg"></i> </a> &nbsp; | &nbsp; 
+                        <a href="{{url('view/product/'.$product->productName)}}" title="view details"> <i class="far fa-eye fa-lg"></i> </a>
+                    </div>
+                    <div class="text-center mt-10">
+                        <a href="{{url('view/product/'.$product->productName)}}">{{$product->productName}} </a>
+                    </div>
+                </div>                
+            </div>
+            @endforeach
+        </div>
+    </div> 
 </div>
 
 <!--  prodact category  end -->
@@ -242,7 +251,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="care-pic ">
-                    <img class="caring-img" src="{{url('public/frontEnd//images/care/1.png')}} "  alt="care img">
+                    <img class="caring-img" src="{{url('public/frontEnd/care/1.png')}} "  alt="care img">
                 </div>
             </div> <!-- col end -->
             <div class="col-lg-6">

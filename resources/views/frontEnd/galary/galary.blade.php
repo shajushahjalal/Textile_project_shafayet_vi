@@ -1,6 +1,6 @@
 @extends('frontEnd.masterPage')
 @section('title')
-    <title>Galary || {{$system->titleName}}</title>
+    <title>Gallery || {{$system->titleName}}</title>
 @stop
 @section('seo')
 @stop
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-8 m-auto text-center">
                 <div class="page-title-content">
-                    <h1 class="h2">Galary</h1> 
+                    <h1 class="h2">Gallery</h1> 
                     <!--== Page Title Area End ==-->
                     <nav class="text-center" aria-label="breadcrumb">
                         <ol class="breadcrumb" style="display: inline-flex;">

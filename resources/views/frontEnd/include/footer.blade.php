@@ -6,7 +6,7 @@
                     {!! Form::open(['url' => 'subscribe','method' => 'post','id' => 'ajax-form']) !!}
                     <div class="row">
                         <div class="col-3 col-lg-2">
-                            <img src="{{asset($system->logo)}}" class="img-fluid" style="max-height:40px;">
+                            <img src="{{ url($system->logo) }}" class="img-fluid" style="max-height:40px;">
                         </div>
                         <div class="col-9 col-lg-10">
                             <div class="input-group">
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="footer-box">
-                            <h4 class="footer-title">Company</h4>
+                            <h4 class="footer-title">About US</h4>
                             <div class="footer-box_content mt-40">                            
                                 <ul class="footer-contact mt-40">
                                     @foreach($footerMenus as $menu)
@@ -55,7 +55,7 @@
                     </div> <!-- col  end -->
                     <div class="col-lg-4">
                         <div class="footer-box">
-                            <h4 class="footer-title">Company</h4>
+                            <h4 class="footer-title">Policy</h4>
                             <div class="footer-box_content mt-40">                            
                                 <ul class="footer-contact mt-40">
                                     @foreach($footerMenus as $menu)
@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <a href="{{url('/')}}">
-                                <img src="{{$system->logo}}" class=" img-fluid" >
+                                <img src="{{asset($system->logo)}}" class=" img-fluid" >
                             </a>
                         </div>                        
                         <div class="col-6 col-md-3 text-center mt-10">

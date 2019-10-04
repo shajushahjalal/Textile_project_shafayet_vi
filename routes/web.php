@@ -21,7 +21,7 @@ Route::middleware(['IsInstalled'])->group(function(){
     
     Route::get('/','HomeController@index'); 
     Route::get('schedule/run','HomeController@scheduleRun'); 
-    Route::get('galary','HomeController@showGalary');
+    Route::get('gallery','HomeController@showGalary');
     Route::get('contact-us','HomeController@showContactPage');
     Route::post('contact-us','HomeController@showContactPage')->name('contact_message_send');
     
@@ -132,12 +132,14 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         
         //Category Section
         Route::get('category/show','BackEnd\CategoryController@showCategory');
+        Route::get('category/create','BackEnd\CategoryController@createCategory');
         Route::post('category/create','BackEnd\CategoryController@storeCategory');
-        Route::get('category/edit','BackEnd\CategoryController@editCategory');
+        Route::get('category/edit/{id}','BackEnd\CategoryController@editCategory');
 	    Route::get('category/{id}/delete','BackEnd\CategoryController@deleteCategory');
         
         //subCategory
         Route::get('sub-category/show','BackEnd\CategoryController@showSubCategory');
+        Route::get('sub-category/create','BackEnd\CategoryController@createSubCategory');
         Route::post('sub-category/create','BackEnd\CategoryController@storeSubCategory');
         Route::get('sub-category/edit/{id}','BackEnd\CategoryController@EditSubCategory');
         Route::get('sub-category/{id}/delete','BackEnd\CategoryController@DeleteSubCategory');
@@ -171,7 +173,7 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         Route::get('product/review','BackEnd\ProductController@productReview');
         Route::get('product/review/{id}/edit','BackEnd\ProductController@editReview');
         Route::post('product/review/update','BackEnd\ProductController@updateReview');
-        Route::get('product/{id}/delete','BackEnd\ProductController@deleteReview');
+        Route::get('product/review/{id}/delete','BackEnd\ProductController@deleteReview');
 
         //Product Stock 
         Route::get('product/product-stock','BackEnd\ProductController@stockIndex');

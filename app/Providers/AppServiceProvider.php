@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
             if(file_exists('config/setup.php')){
                 $prams['system'] = SystemInfo::first(); 
                 $prams['socialIcons'] = SocialMedia::where('publicationStatus',1)->orderBy('position','ASC')->get();
-                $prams['categories'] = Category::where('publicationStatus',1)->orderBy('position','ASC')->get();
+                $prams['categories'] = Category::where('publicationStatus',1)->where('is_delete',0)->orderBy('position','ASC')->get();
                 $prams['footerMenus'] = FooterMenu::where('publicationStatus',1)->orderBy('position','ASC')->get();
                 
                 $view->with($prams);

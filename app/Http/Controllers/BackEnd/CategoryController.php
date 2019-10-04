@@ -40,8 +40,8 @@ class CategoryController extends Controller
                             Action
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" onclick="editCategory('.$data->id.')" > <span class="fa fa-edit"></span> Edit </a>
-                            <a class="dropdown-item" onclick="return confirm(\'Are you sure to delete?\')" href="'.url('category/'.$data->id.'/delete').'" > <i class="fas fa-trash-alt"></i> Delete </a>
+                            <a class="dropdown-item ajax-click-page" href="'.url('category/edit/'.$data->id).'" > <span class="fa fa-edit"></span> Edit </a>
+                            <a class="dropdown-item ajax-click" onclick="return confirm(\'Are you sure to delete?\')" href="'.url('category/'.$data->id.'/delete').'" > <i class="fas fa-trash-alt"></i> Delete </a>
                         </div>
                       </div>';
                         return $text;                        
@@ -61,6 +61,11 @@ class CategoryController extends Controller
         return view('backEnd.category.category');
     }
     
+    // Caregory Create
+    public function createCategory(){
+        return view('backEnd.category.partial.createCategory')->render();
+    }
+
     public function storeCategory(Request $request)
     {
         try {
@@ -80,17 +85,19 @@ class CategoryController extends Controller
             $category->categoryImage = $this->UploadImage($request, 'categoryImage', $this->categoryDir, 300, null, $category->categoryImage);
             $category->save();
             DB::commit();
-            return response()->json('success');               
+            $output = ['status'=>'success','message'=> 'Caregory add successfully', 'table' => 1,'modal'=>1];
+            return response()->json($output);               
         } catch (Exception $ex) {            
             DB::rollback();
+            $output = ['status'=>'error','message' => 'Something went Wrong', 'table' => 1,'modal'=>1];
             return response()->json('error');    
         }
     }
     
     //Edit Category
-    public function editCategory(Request $request)
+    public function editCategory($id)
     {
-        $data = Category::where('id',$request->id)->first();
+        $data = Category::where('id',$id)->firstOrFail();
         return view('backEnd.category.partial.editCategory',['data'=>$data])->render();
     }
     
@@ -103,10 +110,12 @@ class CategoryController extends Controller
             $this->RemoveFile($category->categoryImage);
             $category->save();
             DB::Commit();
-            return back()->with('success','Save Successfully');            
+            $output = ['status'=>'success','message'=> 'Caregory add successfully', 'table' => 1];
+            return response()->json($output );                        
         } catch (Exception $ex) {
             DB::rollback();
-            return back()->with('error','Something Went Wrong');
+            $output = ['status'=>'error','message' => 'Something went Wrong', 'table' => 1];
+            return response()->json($output);
         }
     }
     
@@ -117,47 +126,53 @@ class CategoryController extends Controller
      * 
      * -------------------------------------------------------------------------
      */
-    public function showSubCategory(Request $request) {
+
+    public function showSubCategory(Request $request) {        
+        if($request->ajax()){
+            $this->index = 0;
+            $data = DB::table('sub_categories')
+                ->leftjoin('categories','categories.id','=','sub_categories.categoryId')
+                ->where('sub_categories.is_delete',0)->orderBy('position','ASC')
+                ->select('sub_categories.*','categories.categoryName')->get();   
+                     
+            return DataTables::of($data)
+                ->addcolumn('index',function(){
+                    $this->index++;
+                    return $this->index;
+                })
+                ->addColumn('action',function($data){
+                    $text ='<div class="btn-group">
+                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Action
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item ajax-click-page" href="'.url('sub-category/edit/'.$data->id).'"> <span class="fa fa-edit"></span> Edit </a>
+                        <a class="dropdown-item ajax-click" onclick="return confirm(\'Are you sure to delete?\')" href="'.url('sub-category/'.$data->id.'/delete').'" > <i class="fas fa-trash-alt"></i> Delete </a>
+                    </div>
+                    </div>';
+                    return $text;                        
+                })
+                ->editColumn('subCategoryImage',function($data){
+                    return '<img src="'.asset($data->subCategoryImage).'" width="40" height="40" >';
+                })
+                ->editColumn('publicationStatus',function($data){
+                    return $data->publicationStatus ==1?'Published':'Unpublished';
+                })
+                ->RawColumns(['action','subCategoryImage'])
+                ->make(true);
+        }
+        
+        return view('backEnd.category.subCategory');
+    }
+    
+    // Create SubCategory
+    public function createSubCategory(){
         $categoris = Category:: where('publicationStatus',1)
                 ->where('haveSubCategory',1)->where('is_delete',0)
                 ->orderBy('position','ASC')->get();
-        $this->index = 0;
-        if($request->ajax()){
-            $data = DB::table('sub_categories')
-                    ->leftjoin('categories','categories.id','=','sub_categories.categoryId')
-                    ->where('sub_categories.is_delete',0)->orderBy('position','ASC')
-                    ->select('sub_categories.*','categories.categoryName')->get();
-            
-            return DataTables::of($data)
-                    ->addcolumn('index',function(){
-                        $this->index++;
-                        return $this->index;
-                    })
-                    ->addColumn('action',function($data){
-                        $text ='<div class="btn-group">
-                        <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Action
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" onclick="editSubCategory('.$data->id.')" > <span class="fa fa-edit"></span> Edit </a>
-                            <a class="dropdown-item" onclick="return confirm(\'Are you sure to delete?\')" href="'.url('sub-category/'.$data->id.'/delete').'" > <i class="fas fa-trash-alt"></i> Delete </a>
-                        </div>
-                      </div>';
-                        return $text;                        
-                    })
-                    ->editColumn('subCategoryImage',function($data){
-                        return '<img src="'.asset($data->subCategoryImage).'" width="40" height="40" >';
-                    })
-                    ->editColumn('publicationStatus',function($data){
-                        return $data->publicationStatus ==1?'Published':'Unpublished';
-                    })
-                    ->RawColumns(['action','subCategoryImage'])
-                    ->make(true);
-        }
-        
-        return view('backEnd.category.subCategory',[ 'allCategories' => $categoris ]);
+        return view('backEnd.category.partial.createSubCategory',['allCategories' => $categoris ])->render();
     }
-    
+
     //Save Sub Category Information
     public function storeSubCategory(Request $request) {
         try {
@@ -177,10 +192,13 @@ class CategoryController extends Controller
             $data->subCategoryImage = $this->UploadImage($request, 'subCategoryImage', $this->categoryDir, 268, 185, $data->subCategoryImage);
             $data->save();
             DB::commit();            
-            return response()->json('success');          
+            $output = ['status'=>'success','message'=> 'Caregory add successfully', 'table' => 1,'modal'=>1];
+            return response()->json($output);
+
         } catch (Exception $ex) {            
             DB::rollback();
-            return response()->json('error'); 
+            $output = ['status'=>'error','message'=> 'Something went Wrong', 'table' => 1,'modal'=>1];
+            return response()->json($output);
         }
     }
     

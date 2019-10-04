@@ -6,13 +6,13 @@
             <div class="card-header card-default">
                 <div class="row">
                     <div class="col-6">Sub Category List</div>
-                    <div class="col-6 text-right">                        
-                        <button class="btn btn-sm btn-primary" id="show-modal" >Add Sub-Category</button>
+                    <div class="col-6 text-right">
+                    <a class="btn btn-sm btn-primary ajax-click-page" href="{{url('sub-category/create')}}" > + Add New Sub-Category</a>  
                     </div>
                 </div>
             </div>
             <div class="card-body table-responsive">
-                <table id="category-table" class="table table-striped ">
+                <table id="table" class="table table-striped ">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -31,20 +31,16 @@
         </div>
     </div>
 </div>
-<div id="edit-sub-category"></div>
-@include('backEnd.category.partial.subCreateCategory')
 
+@stop
+@section('script')
 <script>
-    var SubcategoryTable;
-    $(function() {    
-        $('#show-modal').click(function(){
-            $('#sub-catefory-modal').modal('show');
-        });
-        
-         SubcategoryTable = $('#category-table').DataTable({
+    var table;
+    $(function() {        
+        table = $('#table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url('sub-category/show') !!}',
+            ajax: '{{ URL::current() }}',
             columns: [
                 { data: 'index', name: 'index' },
                 { data: 'subCategoryImage', name: 'subCategoryImage' },
@@ -58,56 +54,8 @@
             ],
             "lengthMenu": [[25, 50, 100, 500,1000, -1], [25, 50, 100, 500,1000, "All"]],
             "order": [[ 6, "ASC" ]] 
-        });        
-        $('form#sub-catefory-form').on('submit', function (e) {
-            e.preventDefault();
-            var data = new FormData($(this)[0]);   
-            $.ajax({
-                method: "POST",
-                url: $(this).attr("action"),
-                dataType: "json",
-                data: data,
-                contentType: false,
-                cache: false,
-                processData:false,
-                success: function (message) {
-                    if(message == 'success') {
-                        Swal.fire({
-                            type: 'success',
-                            title: 'Save Successfully',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        $("#sub-catefory-form").trigger("reset");
-                        $('#sub-catefory-modal').modal('hide');
-                        SubcategoryTable.ajax.reload();
-                    }else {
-                        $('#sub-catefory-modal').modal('hide');
-                        Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
-                      });
-                    }
-                }
-            });
-        });        
-        
-    });
-    function editSubCategory(id){
-        var url = "{{url('sub-category/edit')}}/"+id;
-        $.ajax({
-            url:url,
-            type:'get',
-            dataType: 'html',
-            success:function(data){                  
-                $('#edit-sub-category').html(data);
-                $('#edit-subcategory-modal').modal('show');   
-            }
         });
-    }        
-    
-    
+    });   
 </script>
 @endsection
 

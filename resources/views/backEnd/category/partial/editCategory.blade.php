@@ -1,5 +1,5 @@
 <!-- Category Modal -->
-<div class="modal fade" id="edit-category-modal" keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {!! Form::Open(['url' => 'category/create','id'=>'edit-Category-form','class' =>'form-horizontal','method' => 'POST','files'=>true]) !!}
+        {!! Form::Open(['url' => 'category/create','id'=>'ajax-form','class' =>'form-horizontal','method' => 'POST','files'=>true]) !!}
         <div class="modal-body row">
             <div class="col-sm-6 col-12">
                 <div class="form-group">
@@ -71,47 +71,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Update Category</button>
+          <button type="submit" id="submit" class="btn btn-primary">Update Category</button>
         </div>
         {!! Form::close() !!}
     </div>
   </div>
 </div>
-<script>
-    $(function(){
-        //Submit Edit Category Modal
-        $('form#edit-Category-form').on('submit', function (e) {
-            e.preventDefault();
-            var data = new FormData(this);
-            $.ajax({
-                method: "POST",
-                url: $(this).attr("action"),
-                dataType: "json",
-                data: data,
-                contentType: false,
-                cache: false,
-                processData:false,
-                success: function (message) {
-                    if(message === 'success') {
-                        Swal.fire({
-                            type: 'success',
-                            title: 'Information Update Successfully',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        $("#edit-category-form").trigger("reset");
-                        $('#edit-category-modal').modal('hide');
-                        categoryTable.ajax.reload();
-                    }else {
-                        $('#edit-category-modal').modal('hide');
-                        Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
-                      });
-                    }
-                }
-            });
-        });
-    });
-</script>
+

@@ -79,8 +79,7 @@ $(function(){
         Swal.fire({
             type: 'success',
             title: message,
-            showConfirmButton: false,
-            timer: 3000
+            showConfirmButton: true,
         }); 
     }
 

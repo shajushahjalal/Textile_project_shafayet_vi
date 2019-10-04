@@ -34,9 +34,10 @@
 </div>
 
 <script>   
+    var table;
     $(function(){    
         // Load Data via datatable
-        $('#product-table').DataTable({
+        table = $('#product-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! url('product/delete') !!}',

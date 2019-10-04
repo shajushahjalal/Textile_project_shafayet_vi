@@ -1,5 +1,5 @@
 <!-- Category Modal -->
-<div class="modal fade" id="category" keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {!! Form::Open(['url' => 'category/create','id' =>'add-category-form' ,'class' =>'form-horizontal','method' => 'POST','files'=>true]) !!}
+        {!! Form::Open(['url' => 'category/create','id' =>'ajax-form' ,'class' =>'form-horizontal','method' => 'POST','files'=>true]) !!}
         <div class="modal-body row">
             <div class="col-sm-6 col-12">
                 <div class="form-group">
@@ -72,9 +72,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Add Category</button>
+          <button type="submit" id="submit" class="btn btn-primary">Add Category</button>
         </div>
-        {{!! Form::close(); !!}}
+        {!! Form::close() !!}
     </div>
   </div>
 </div>
