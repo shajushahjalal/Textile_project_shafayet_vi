@@ -220,10 +220,12 @@ class CategoryController extends Controller
             $this->RemoveFile($data->subCategoryImage);
             $data->save();
             DB::Commit();
-            return back()->with('success','Save Successfully');            
+            $output = ['status' => 'success' , 'message' => 'Delete Successfully', 'table'=>1, 'modal'=>1 ];
+            return response()->json($output);
         } catch (Exception $ex) {
             DB::rollback();
-            return back()->with('error','Something Went Wrong');
+            $output = ['status' => 'error' , 'message' => 'Something went Wrong', 'table'=>1, 'modal'=>1 ];
+            return response()->json($output);
         }
     }
     

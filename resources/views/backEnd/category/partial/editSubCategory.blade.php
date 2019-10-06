@@ -28,7 +28,7 @@
                     </select>
                 </div>
             </div>
-
+            
             <!-- Seo Section -->
             <div class="col-sm-6 col-12">
                     <div class="form-group">
@@ -80,41 +80,4 @@
     </div>
   </div>
 </div>
-<script>
-    $(function(){
-        //Submit Edit Category Modal
-        $('form#edit-category-form').on('submit', function (e) {
-            e.preventDefault();
-            var data = new FormData(this);
-            $.ajax({
-                method: "POST",
-                url: $(this).attr("action"),
-                dataType: "json",
-                data: data,
-                contentType: false,
-                cache: false,
-                processData:false,
-                success: function (message) {
-                    if(message === 'success') {
-                        Swal.fire({
-                            type: 'success',
-                            title: 'Information Update Successfully',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        $("#edit-category-form").trigger("reset");
-                        $('#edit-subcategory-modal').modal('hide');
-                        SubcategoryTable.ajax.reload();
-                    }else {
-                        $('#edit-subcategory-modal').modal('hide');
-                        Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
-                      });
-                    }
-                }
-            });
-        });
-    });
-</script>
+

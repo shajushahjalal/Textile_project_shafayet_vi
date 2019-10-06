@@ -32,7 +32,7 @@
             <div class="col-10 offset-1 mt-40 mb-40">
                 <div class="text-justify">
                     @if(file_exists($data->image))
-                    <img src="{{asset($data->image)}}" class=" img-fluid mb-20" style="max-height:400px;">
+                    <center><img src="{{asset($data->image)}}" class=" img-fluid mb-20"></center>
                     @endif
                     {!! $data->content !!}
                 </div>  

@@ -201,6 +201,23 @@
                                         </li>
                                     </ul>
                                 </li>
+                                
+                                <!--Clients -->
+                                <li class="pcoded-hasmenu">
+                                    <a href="{{url('client/')}}">
+                                        <span class="pcoded-micon"><i class="fas fa-users"></i></span>
+                                        <span class="pcoded-mtext">Clients</span>
+                                    </a>
+                                </li>
+
+                                <!-- Goals-->
+                                <li class="pcoded-hasmenu">
+                                    <a href="{{url('goals/')}}">
+                                        <span class="pcoded-micon"><i class="fas fa-star-half-alt"></i></span>
+                                        <span class="pcoded-mtext">Goals</span>
+                                    </a>
+                                </li>
+                                
                                 <!-- product Review 
                                 <li class="pcoded-hasmenu">
                                     <a href="{{url('product/review')}}">

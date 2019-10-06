@@ -24,6 +24,7 @@ Route::middleware(['IsInstalled'])->group(function(){
     Route::get('gallery','HomeController@showGalary');
     Route::get('contact-us','HomeController@showContactPage');
     Route::post('contact-us','HomeController@showContactPage')->name('contact_message_send');
+    Route::get('our-clients/','HomeController@showClientPage');
     
     
     /*--------------------------------------------------------------------------
@@ -200,6 +201,24 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         Route::post('galary/content/create','BackEnd\GalaryController@storeContentCreate');
         Route::get('galary/content/edit/{id}','BackEnd\GalaryController@editContent');
         Route::get('galary/content/delete/{id}','BackEnd\GalaryController@deleteContent');
+
+        //Goals
+        Route::get('goals','BackEnd\GoalsController@index');
+        Route::post('goals','BackEnd\GoalsController@store');
+        Route::get('goals/content','BackEnd\GoalsController@goalContent');
+        Route::get('goals/content/create','BackEnd\GoalsController@createContent');
+        Route::post('goals/content/create','BackEnd\GoalsController@storeContent');
+        Route::get('goals/content/edit/{id}','BackEnd\GoalsController@editContent');
+        Route::get('goals/content/delete/{id}','BackEnd\GoalsController@deleteContent');
+
+        // Client List
+        Route::get('client/','BackEnd\ClientController@index');
+        Route::post('client/','BackEnd\ClientController@store');
+        Route::get('client/list','BackEnd\ClientController@clientList');
+        Route::get('client/list/create','BackEnd\ClientController@createContent');
+        Route::post('client/list/create','BackEnd\ClientController@storeClientList');
+        Route::get('client/list/edit/{id}','BackEnd\ClientController@editClientList');
+        Route::get('client/list/delete/{id}','BackEnd\ClientController@deleteClientList');
 
 
         //coupon Code

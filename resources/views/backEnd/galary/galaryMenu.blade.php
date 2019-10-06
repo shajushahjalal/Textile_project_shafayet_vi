@@ -29,7 +29,7 @@
 </div>
 
 <script>
-    var categoryTable;
+    var table;
     $(function() {        
         // Load Data via datatable
         table = $('#table').DataTable({
@@ -45,59 +45,7 @@
             ],
             "lengthMenu": [[25, 50, 100, 500,1000, -1], [25, 50, 100, 500,1000, "All"]],
             "order": [[ 2, "ASC" ]] 
-        }); 
-        
-        // Submit Add Category Form
-        $('form#add-category-form').on('submit', function (e) {
-            e.preventDefault();
-            var data = new FormData($(this)[0]); 
-            $.ajax({
-                method: "POST",
-                url: $(this).attr("action"),
-                dataType: "json",
-                data: data,
-                contentType: false,
-                cache: false,
-                processData:false,
-                success: function (message) {
-                    if(message == 'success') {
-                        Swal.fire({
-                            type: 'success',
-                            title: 'Category Create Successfylly',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        $("#add-category-form").trigger("reset");
-                        $('#category').modal('hide');
-                        categoryTable.ajax.reload();
-                    }else {
-                        $('#category').modal('hide');
-                        Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
-                      });
-                    }
-                }
-            });
         });
-        
-        
-    });
-    
-    // Show Edit Category Modal
-    function editCategory(id){
-        $.ajax({
-            url:'{{url('category/edit')}}',
-            type:'get',
-            data:{id:id},
-            dataType: 'html',
-            success:function(data){                  
-                $('#edit-category').html(data);
-                $('#edit-category-modal').modal('show');   
-            }
-        });
-    }
     
 </script>
 @endsection

@@ -63,10 +63,12 @@
         <div class="row product-display-gird mb-40">
             @foreach($products as $product)
             <div class="mt-5 col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div class="product-show">
+                <div class="product-show text-center">
                     <div>
                         <a href="{{url('view/product/'.$product->productName)}}">
-                            <img src="{{asset($product->image)}}" class=" img-fluid">
+                            <center>
+                                <img src="{{asset($product->image)}}" class=" img-fluid">
+                            </center>
                         </a>
                     </div>
                     <div class="text-center product-overlap-icons">
@@ -193,52 +195,27 @@
         <div class="row">
             <div class="col-12">
               <div class="section-title pad-60">
-                  <h3 class="" > our Goal </h3>
-                  <p class="text-center">  Meliore electram sapientem sit eu, eam ex vero laudem ornatus. Nec an <br> adipisci nominati consetetur,</p>
+                  <h3> {{isset($goals->id)?$goals->heading:null}} </h3>
+              <p class="text-center">{{isset($goals->id)?$goals->text:null}}</p>
               </div>  
             </div>
         </div> <!-- end row -->
         <div class="row">
+            @foreach($goals_content as $item)
             <div class=" col-lg-4">
                 <div class="causes-item">
-                    <img src="assets/images/causes/1.png" alt="Causes-Img">
+                    <img src="{{asset($item->image)}}" alt="Causes-Img">
                     <div class="causes-item-content position-relative">
                         <div class="progress ">
-                            <div class="progress-bar wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.8s"  role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"  > <span> 65%</span> </div>
+                        <div class="progress-bar wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.8s"  role="progressbar" style="width: {{$item->persent}}%;" aria-valuenow="{{$item->persent}}" aria-valuemin="0" aria-valuemax="100"  > <span> {{$item->persent}}%</span> </div>
                           </div>
-                        <h5 class="causes-item-title"> Goal Name  </h5>
-                        <p> Lorem ipsum dolor sit amet consectetur adipisi </p>
+                        <h5 class="causes-item-title"> {{$item->title}} </h5>
+                        <p> {{$item->text}} </p>
 
                     </div>
                 </div>
             </div> <!-- col end -->
-            <div class=" col-lg-4">
-                <div class="causes-item">
-                    <img src="assets/images/causes/2.png" alt="Causes-Img">
-                    <div class="causes-item-content position-relative">
-                        <div class="progress ">
-                            <div class="progress-bar wow fadeInLeftBig " data-wow-duration="1s" data-wow-delay="0.8s" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"> <span> 75%</span> </div>
-                          </div>
-                        <h5 class="causes-item-title">Goal Name </h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisi </p>
-
-                    </div>
-                </div>
-            </div> <!-- col end -->
-            <div class=" col-lg-4">
-                <div class="causes-item">
-                    <img src="assets/images/causes/3.png" alt="Causes-Img">
-                    <div class="causes-item-content position-relative">
-                        <div class="progress ">
-                            <div class="progress-bar wow fadeInLeftBig " data-wow-duration="1s" data-wow-delay="0.8s" role="progressbar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"> <span> 68%</span> </div>
-                          </div>
-                        <h5 class="causes-item-title"> Goal name </h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisi . </p>
-
-                    </div>
-                </div>
-            </div> <!-- col end -->
-           
+            @endforeach
         </div> <!-- row end -->
     </div> 
 </div>

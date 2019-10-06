@@ -35,7 +35,7 @@ class FooterMenuController extends Controller
             $data = FooterMenu::find($request->id);
         }
         $data->menuName = $request->menuName;
-        $data->image = $this->UploadImage($request,'image',$this->contentImage,720,220,$data->image);
+        $data->image = $this->UploadImage($request,'image',$this->contentImage,null,420,$data->image);
         $data->publicationStatus = $request->publicationStatus;
         $data->show = $request->show;
         $data->position = $request->position;
