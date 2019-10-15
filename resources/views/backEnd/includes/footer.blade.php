@@ -26,6 +26,8 @@
     <script src="{{asset('public/backEnd/assets/js/vartical-layout.min.js')}}" type="text/javascript"></script>
     <script type="text/javascript" src="{{asset('public/backEnd/assets/js/script.min.js')}}"></script> 
     <script type="text/javascript" src="{{asset('public/backEnd/js/form.js')}}"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script> 
+    
     
     <!-- Sweet Alert -->
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>

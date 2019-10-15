@@ -54,10 +54,10 @@
                                 @endif   
                             @endforeach
                             <li><a href="{{url('gallery')}}"> Gallery </a></li>
-                            @if(isset($is_home) && $is_home == true)
-                            <li><a href="#about-us" class="smoothScroll" >About Us</a></li>
+                            @if(isset($is_home) && $is_home == true)                            
                             <li><a href="#portfolio" class="smoothScroll" >Portfolio</a></li>
                             @endif
+                            <li><a href="{{url('about-us')}}" >About Us</a></li>
                             <li><a href="{{url('our-clients')}}">Clients</a></li>
                             <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                         </ul>

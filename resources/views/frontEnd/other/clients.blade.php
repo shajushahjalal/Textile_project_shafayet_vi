@@ -50,7 +50,7 @@
                             <div class="card position-relative" style=" border: none; ">
                                 <i class="fas fa-quote-left fa-3x position-absolute" style=" top:-20px; "></i>
                                 <div class="card-body" style=" height: 160px; border: none; ">
-                                    {!! $client->text !!} 
+                                    {!! isset($client->text)?$client->text:null !!} 
                                 </div>                                
                                 <i class="fas fa-user fa-5x position-absolute" style="bottom: -10px; right:0;"></i>
                             </div>

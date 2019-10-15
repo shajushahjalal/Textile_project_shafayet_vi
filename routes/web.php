@@ -25,6 +25,7 @@ Route::middleware(['IsInstalled'])->group(function(){
     Route::get('contact-us','HomeController@showContactPage');
     Route::post('contact-us','HomeController@showContactPage')->name('contact_message_send');
     Route::get('our-clients/','HomeController@showClientPage');
+    Route::get('about-us/','HomeController@showAboutUSPage');
     
     
     /*--------------------------------------------------------------------------
@@ -220,6 +221,21 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         Route::get('client/list/edit/{id}','BackEnd\ClientController@editClientList');
         Route::get('client/list/delete/{id}','BackEnd\ClientController@deleteClientList');
 
+        // About US
+        Route::get('about/','BackEnd\AboutUsController@index');
+        Route::post('about/','BackEnd\AboutUsController@store');
+
+        Route::get('about/service/create','BackEnd\AboutUsController@createService');
+        Route::get('about/service/list','BackEnd\AboutUsController@serviceList');
+        Route::post('about/service/create','BackEnd\AboutUsController@serviceStore');
+        Route::get('about/service/edit/{id}','BackEnd\ClientController@editServiceList');
+        Route::get('about/service/delete/{id}','BackEnd\AboutUsController@deleteServiceList');
+
+        Route::get('about/management','BackEnd\AboutUsController@management');
+        Route::get('about/management/create','BackEnd\AboutUsController@createManagement');
+        Route::post('about/management/create','BackEnd\AboutUsController@storeManagement');
+        Route::get('about/management/edit/{id}','BackEnd\AboutUsController@editManagement');
+        Route::get('about/management/delete/{id}','BackEnd\AboutUsController@deleteManagement');
 
         //coupon Code
         Route::get('coupon','BackEnd\CouponController@index');

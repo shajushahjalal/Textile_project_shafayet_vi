@@ -22,7 +22,10 @@
                 </div>  
                 <div class="col-12 col-md-4">
                     <label>Image</label>
-                    <input type="file" class="form-control" name="image" {{isset($data->id)?'null':'required'}} accept="image/*" >
+                    <input type="file" class="form-control" name="image" {{isset($data->id)?'null':'required'}} accept="image/*" ><br><br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-success progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                    </div>
                 </div>                 
             </div>
         </div>

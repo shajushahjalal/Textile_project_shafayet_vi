@@ -1,3 +1,4 @@
+
 $(function(){
     $(document).on('submit','#ajax-form',function(e){
         e.preventDefault();
@@ -5,11 +6,24 @@ $(function(){
         var buttonText = button.text();
         button.text('Loading...');
         button.attr('disabled',true);
+        var progress = $(this).find('.progress-bar');
+        progress.html("0%");
+        progress.css("width","0px");
         var data = new FormData($(this)[0]); 
         $.ajax({
-            method: "POST",
+            xhr: function(){
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt){
+                    if(evt.lengthComputable){
+                        var persentComplete = parseFloat( (evt.loaded / evt.total ) * 100 ).toFixed(2);
+                        progress.css("width",persentComplete+"%");
+                        progress.html(persentComplete+"%");
+                    }
+                }, false);
+                return xhr;
+            },
+            type: "POST",
             url: $(this).attr("action"),
-            dataType: "json",
             data: data,
             contentType: false,
             cache: false,
@@ -33,7 +47,6 @@ $(function(){
             error : function(){
                 errorMessage();
             }
-
         });
     });
 
@@ -65,7 +78,8 @@ $(function(){
             url : $(this).attr('href'),
             method : 'GET',
             dataType : 'html',
-            success : function(output){               
+            success : function(output){  
+                $('.modal').remove();            
                 $('body').append(output);
                 $('.modal').modal('show');
             },

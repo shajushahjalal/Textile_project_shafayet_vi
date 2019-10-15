@@ -31,7 +31,10 @@
                 </div>
                 <div class="form-group">
                     <label>Image <span class="text-danger">{{ isset($data->id)?null:'*'}}</span></label><br>
-                    <input type="file" name="image" accept="image/*" {{ isset($data->id)?null:'required'}}>
+                    <input type="file" name="image" accept="image/*" {{ isset($data->id)?null:'required'}}><br><br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-success progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

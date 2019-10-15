@@ -17,7 +17,7 @@ class GoalsController extends Controller
      */
     public function index(){
         $goals = Goal::first();
-        return view('BackEnd.goal.index',['goals' => $goals]);
+        return view('backEnd.goal.index',['goals' => $goals]);
     }
 
     /**
@@ -67,7 +67,7 @@ class GoalsController extends Controller
      * 
      */
     public function createContent(){
-        return view('BackEnd.goal.partial.createGoalContent')->render();
+        return view('backEnd.goal.partial.createGoalContent')->render();
     }
 
     /**
@@ -99,7 +99,7 @@ class GoalsController extends Controller
      */
     public function editContent($id){
         $data = GoalsContent::findOrFail($id);
-        return view('BackEnd.goal.partial.createGoalContent',['data'=>$data])->render();
+        return view('backEnd.goal.partial.createGoalContent',['data'=>$data])->render();
     }
 
     /**

@@ -210,6 +210,22 @@
                                     </a>
                                 </li>
 
+                                <!-- Services-->
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fas fa-cogs"></i></span>
+                                        <span class="pcoded-mtext" >About US</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li>
+                                            <a href="{{url('about//')}}"><i class="fas fa-list"></i> About </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('about/management')}}"><i class="fas fa-users"></i> Management</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
                                 <!-- Goals-->
                                 <li class="pcoded-hasmenu">
                                     <a href="{{url('goals/')}}">

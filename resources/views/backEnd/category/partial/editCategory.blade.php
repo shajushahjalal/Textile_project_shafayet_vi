@@ -65,7 +65,10 @@
             <div class="col-sm-6 col-12">
                 <div class="form-group">
                     <label>Category Image</label><br>
-                    <input type="file" name="categoryImage" accept="image/*">
+                    <input type="file" name="categoryImage" accept="image/*"><br><br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-success progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                    </div>
                 </div>
             </div>
         </div>
