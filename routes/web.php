@@ -15,7 +15,7 @@ require 'install.php';
 
 
 
-Route::middleware(['IsInstalled'])->group(function(){
+Route::middleware(['IsInstalled','visitor'])->group(function(){
 
     Auth::routes(['verify' => true]);
     

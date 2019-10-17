@@ -16,8 +16,10 @@ use App\Product;
 use App\Services;
 use App\Slider;
 use App\SliderVideo;
+use App\VisitorHistory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -44,8 +46,16 @@ class HomeController extends Controller
     }
 
     // BackEnd Home Page
-    public function backEndIndex(){
-        return view('backEnd.dashboard.index');
+    public function backEndIndex(Request $request){
+        $prams['today_visitor'] = VisitorHistory::where('date', '=', Carbon::now()->format('Y-m-d'))
+            ->select( DB::raw('count(`id`) as visitor'), DB::raw('sum(`visit_count`) as total_page_visit'))->first();
+
+        $prams['yesterday_visitor'] = VisitorHistory::where('date', '=', Carbon::now()->subDays(1)->format('Y-m-d'))
+            ->select( DB::raw('count(`id`) as visitor'), DB::raw('sum(`visit_count`) as total_page_visit'))->first();
+        if($request->ajax()){
+
+        }
+        return view('backEnd.dashboard.index', $prams);
     }
 
     // Show Galary
