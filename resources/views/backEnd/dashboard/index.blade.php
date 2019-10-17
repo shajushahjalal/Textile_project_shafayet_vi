@@ -81,7 +81,47 @@
             <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : {{Carbon\Carbon::now()->subdays(1)->format('d-M-Y')}}</p>
             </div>
         </div>
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3>Website Visit History</h3><br>
     </div>
-    
-</div>                                            
+    <div class="col-12 table-responsive">
+        <table class="table table-striped" id="table">
+            <thead>
+                <th>Sn</th>
+                <th>IP</th>
+                <th>Device</th>
+                <th>OS</th>
+                <th>Country</th>
+                <th>Page Visit</th>
+                <th>Date</th>
+            </thead>
+        </table>
+    </div>
+</div>
+<script>
+    $(function() {        
+        // Load Data via datatable
+        $('#table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! URL::current() !!}',
+            columns: [
+                { data: 'index', name: 'index' },
+                { data: 'ip', name: 'ip' },
+                { data: 'device', name: 'device' },
+                { data: 'os', name: 'os' },
+                { data: 'countryCode', name: 'countryCode' },                
+                { data: 'visit_count', name: 'visit_count' },
+                { data: 'date', name: 'date' }
+            ],
+            "lengthMenu": [[50, 100, 500,1000, -1], [50, 100, 500,1000, "All"]],
+            "order": [[ 4, "ASC" ]] 
+        }); 
+    });
+</script>
+
 @endsection

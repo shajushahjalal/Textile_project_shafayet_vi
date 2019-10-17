@@ -20,6 +20,7 @@ use App\VisitorHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    protected $index;
 
      // FrontEnd Home Page
     public function index()
@@ -53,7 +55,13 @@ class HomeController extends Controller
         $prams['yesterday_visitor'] = VisitorHistory::where('date', '=', Carbon::now()->subDays(1)->format('Y-m-d'))
             ->select( DB::raw('count(`id`) as visitor'), DB::raw('sum(`visit_count`) as total_page_visit'))->first();
         if($request->ajax()){
-
+            $this->index = 0;
+            $data = VisitorHistory::orderBy('date','DESC')->get();
+            return DataTables::of($data)
+            ->addColumn('index',function(){
+                $this->index++;
+                return $this->index;
+            })->make(true);
         }
         return view('backEnd.dashboard.index', $prams);
     }

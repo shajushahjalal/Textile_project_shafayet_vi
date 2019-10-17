@@ -32,7 +32,8 @@ class VisitorCountMiddleware
                 }catch(Exception $e){
                     $data = $this->storeVisitorData($request, false);
                 }
-                Session::put('visitor_id',$data->id);                
+                Session::put('visitor_id',$data->id); 
+                Session::save();               
             }
         }catch(Exception $ex){
             return $next($request);
