@@ -11,4 +11,8 @@ class GalaryContent extends Model
     {
         return $this->belongsTo(GalaryMenu::class);
     }
+
+    public function subMenu(){
+        return $this->belongsTo(GalarySubMenu::class,'galary_submenu_id');
+    }
 }

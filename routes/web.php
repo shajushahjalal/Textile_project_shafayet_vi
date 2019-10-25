@@ -22,8 +22,9 @@ Route::middleware(['IsInstalled','visitor'])->group(function(){
     Route::get('/','HomeController@index'); 
     Route::get('schedule/run','HomeController@scheduleRun'); 
     Route::get('gallery','HomeController@showGalary');
+    //Route::get('load/galary/submenu','HomeController@')
     Route::get('contact-us','HomeController@showContactPage');
-    Route::post('contact-us','HomeController@showContactPage')->name('contact_message_send');
+    Route::post('contact-us','HomeController@sendContactMessage')->name('contact_message_send');
     Route::get('our-clients/','HomeController@showClientPage');
     Route::get('about-us/','HomeController@showAboutUSPage');
     
@@ -33,7 +34,7 @@ Route::middleware(['IsInstalled','visitor'])->group(function(){
      * And sub-subcategory and 
      * View Product Details
      *-------------------------------------------------------------------------*/
-    Route::get('view/product/{pnm}','FrontEnd\ProductController@viewProductDetails');
+    Route::get('view/product/{id}/{pnm}','FrontEnd\ProductController@viewProductDetails');
     Route::get('view-category/{cnm}','FrontEnd\ProductController@showAllProducts');
     Route::get('view-category/{cnm}/{scnm}','FrontEnd\ProductController@showAllProducts');
     //Route::get('product/get-quantity','FrontEnd\ProductController@getQuantity')->name('product_qty_check');
@@ -196,6 +197,13 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         Route::post('galary/menu/create','BackEnd\GalaryController@storeMenu');
         Route::get('galary/menu/edit/{id}','BackEnd\GalaryController@editMenu');
         Route::get('galary/menu/delete/{id}','BackEnd\GalaryController@deleteMenu');
+        
+        Route::get('get/galary-menu','BackEnd\GalaryController@getMenuList');
+        Route::get('galary/sub-menu','BackEnd\GalaryController@galarySubMenuIndex');
+        Route::get('galary/sub-menu/create','BackEnd\GalaryController@createSubMenu');
+        Route::post('galary/sub-menu/create','BackEnd\GalaryController@storeSubMenu');
+        Route::get('galary/sub-menu/edit/{id}','BackEnd\GalaryController@editSubMenu');
+        Route::get('galary/sub-menu/delete/{id}','BackEnd\GalaryController@deleteSubMenu');
 
         Route::get('galary/content','BackEnd\GalaryController@galaryContentIndex');
         Route::get('galary/content/create','BackEnd\GalaryController@galaryContentCreate');

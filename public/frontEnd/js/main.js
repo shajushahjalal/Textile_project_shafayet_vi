@@ -230,3 +230,20 @@ Template Name: Raza
     });
 
 })(jQuery);
+
+function successMessage(mgs){
+    Swal.fire({
+        type: 'success',
+        title: 'Success',
+        text: mgs === null ? 'Done successfully' : mgs,
+        showConfirmButton: true,
+    });
+}
+
+function errorMessage(mgs){
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: mgs === null ? 'Something Went Wrong':mgs,
+    });
+}

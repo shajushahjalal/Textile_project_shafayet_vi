@@ -18,6 +18,7 @@
                             <th>#</th>
                             <th>Image</th>
                             <th>Menu Name</th>
+                            <th>Sub-Menu Name</th>
                             <th>Link</th>
                             <th>Action</th>
                         </tr>
@@ -40,12 +41,14 @@
                 { data: 'index', name: 'index' },
                 { data: 'image', name: 'image' },
                 { data: 'menuName', name: 'menuName' },
+                { data: 'subMenuName', name: 'subMenuName' },
                 { data: 'link', name: 'link' },
                 { data: 'action', name: 'action' }
             ],
             "lengthMenu": [[25, 50, 100, 500,1000, -1], [25, 50, 100, 500,1000, "All"]],
-            "order": [[ 4, "ASC" ]] 
+            "order": [[ 0, "ASC" ]] 
         }); 
     });
+</script>
 @endsection
 

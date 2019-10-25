@@ -162,6 +162,7 @@
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf64CyWpOBCEocXjocJL_wZiW82hNtbTA&callback=initMap" async defer></script>
     <!-- template main js file -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="{{asset('public/frontEnd/js/main.js')}}"></script>
     @yield('script')
 </body>

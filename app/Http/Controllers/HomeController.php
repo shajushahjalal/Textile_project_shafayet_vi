@@ -16,11 +16,14 @@ use App\Product;
 use App\Services;
 use App\Slider;
 use App\SliderVideo;
+use App\SystemInfo;
 use App\VisitorHistory;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -39,7 +42,7 @@ class HomeController extends Controller
         $prams['brands'] = Branding::all();
         $prams['slider']  = Slider::where('publicationStatus',1)->get();
         $prams['sliderVideo'] = SliderVideo::first();
-        $prams['products'] = Product::where('publicationStatus',1)->orderBy('id','desc')->paginate(20);
+        $prams['products'] = Product::where('publicationStatus',1)->where('is_delete',0)->orderBy('id','desc')->paginate(20);
         $prams['goals'] = Goal::first();
         $prams['goals_content'] = GoalsContent::all();
         $prams['is_home'] = true;
@@ -56,7 +59,7 @@ class HomeController extends Controller
             ->select( DB::raw('count(`id`) as visitor'), DB::raw('sum(`visit_count`) as total_page_visit'))->first();
         if($request->ajax()){
             $this->index = 0;
-            $data = VisitorHistory::orderBy('date','DESC')->get();
+            $data = VisitorHistory::orderBy('id','DESC')->get();
             return DataTables::of($data)
             ->addColumn('index',function(){
                 $this->index++;
@@ -94,4 +97,28 @@ class HomeController extends Controller
 
         return view('frontEnd.other.aboutus',$prams);
     }
+
+    // Send contact Message 
+    public function sendContactMessage(Request $request){
+        try{
+            $system =  SystemInfo::first();
+            $receiver = [
+                'customer_email' => $request->email,
+                'messagebody' => 'Message From : '.$request->email.'<br> Contact No: '.$request->phone.'<br>'.$request->message
+            ];
+            Mail::send('email.email',$receiver,function($message) use ($request, $system ){
+                $message->to($system->email)
+                ->subject($request->subject);
+                $message->from('support@trendlink.com.bd');
+            });
+            $output = ['status'=>'success','message' => 'Message Send successfully'];
+            return response()->json($output);
+        }catch(Exception $e){
+            $output = ['status'=>'error','message' => $e->getMessage()];
+            return response()->json($output);
+        }
+    }
+
+  
+   
 }

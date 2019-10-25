@@ -197,6 +197,9 @@
                                             <a href="{{url('galary/menu')}}"><i class="fas fa-list"></i>Galary Menu </a>
                                         </li>
                                         <li>
+                                            <a href="{{url('galary/sub-menu')}}"><i class="fas fa-list"></i>Galary Sub-Menu </a>
+                                        </li>
+                                        <li>
                                             <a href="{{url('galary/content')}}"><i class="fas fa-plus-circle"></i> Add Galary Content</a>
                                         </li>
                                     </ul>

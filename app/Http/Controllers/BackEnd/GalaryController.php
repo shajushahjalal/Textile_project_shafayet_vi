@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BackEnd;
 
 use App\GalaryContent;
 use App\GalaryMenu;
+use App\GalarySubMenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
@@ -76,8 +77,9 @@ class GalaryController extends Controller
         
     }
 
-    /**
+    /************************************************************************************************
      * Galary Content
+     * **********************************************************************************************
      */
 
     // Galary Content Index Page
@@ -91,6 +93,9 @@ class GalaryController extends Controller
             })
             ->addColumn('menuName',function($row){
                 return $row->galary->menuName; 
+            })
+            ->addColumn('subMenuName',function($row){
+                return $row->subMenu->subMenuName; 
             })
             ->addColumn('action',function($row){
                 $li = '<a href="'.url('galary/content/edit/'.$row->id).'" class="ajax-click-page btn btn-info btn-sm">Edit</a> &nbsp; ';
@@ -121,13 +126,14 @@ class GalaryController extends Controller
                 $data =  GalaryContent::findOrFail($request->id);
             }
             $data->galary_id = $request->galary_id;
+            $data->galary_submenu_id = $request->galary_submenu_id;
             $data->link = $request->link;
             $data->image = $this->UploadImage($request, 'image', $this->galaryImage, null, 250, $data->image);
             $data->save();
             $output = ['status'=>'success','message'=>'Data Save Successfully','table'=> 1,'modal'=>1];
             return response()->json($output);
-        }catch(Exception $ex){
-            $output = ['status'=>'error','message'=>'Something went Wrong','table'=> 1,'modal'=>1];
+        }catch(Exception $e){
+            $output = ['status'=>'error','message'=> $e->getMessage(),'table'=> 1,'modal'=>1];
             return response()->json($output);
         } 
     }
@@ -146,6 +152,91 @@ class GalaryController extends Controller
         $data->delete();
         $output = ['status'=>'success','message'=>'Data Delete Successfully','table'=> 1];
         return response()->json($output);
+    }
+
+    // get Galary Menu List
+    public function getMenuList(Request $request){
+        $menus = GalarySubMenu::where('galary_menu_id',$request->id)->get();
+        $option = '<option value="">Select Menu</option>';
+        foreach($menus as $menu){
+            $option .= '<option value="'.$menu->id.'">'. $menu->subMenuName .'</option>';
+        }
+        return  $option;
+    }
+
+    /**
+     * ************************************************************************************************
+     * Galary Sub Menu Section
+     * ************************************************************************************************
+     */
+    public function galarySubMenuIndex(Request $request){
+        if($request->ajax()){
+            $this->index = 0;
+            $data = GalarySubMenu::orderBy('position','ASC')->get();
+            return DataTables::of($data)
+            ->addColumn('index',function(){
+                $this->index++;
+                return $this->index;
+            })->addColumn('menuName',function($row){
+                return $row->galaryMenu->menuName;
+            })
+            ->editColumn('publicationStatus',function($row){
+                return $row->publicationStatus == 1?'published':unpublished; 
+            })
+            ->addColumn('action',function($row){
+                $li = '<a href="'.url('galary/sub-menu/edit/'.$row->id).'" class="ajax-click-page btn btn-info btn-sm">Edit</a> &nbsp; ';
+                $li .= '<a href="'.url('galary/sub-menu/delete/'.$row->id).'" class="ajax-click btn btn-danger btn-sm" >Delete</a>';
+                return $li;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('backEnd.galary.galarySubMenu');
+    }
+
+    /**
+     * Create Galary SubMenu
+     */
+    public function createSubMenu(){
+        $galaryMenus = GalaryMenu::where('publicationStatus',1)->get();
+        return view('backEnd.galary.partial.createSubMenu',['galaryMenus' => $galaryMenus]);
+    }
+
+    // Save Menu Info
+    public function storeSubMenu(Request $request){
+        try{
+            if($request->id == 0){
+                $data =  new GalarySubMenu();
+            }else{
+                $data =  GalarySubMenu::findOrFail($request->id);
+            }
+            $data->galary_menu_id = $request->galary_menu_id;            
+            $data->subMenuName = $request->subMenuName;
+            $data->position = $request->position;
+            $data->publicationStatus = $request->publicationStatus;
+            $data->save();
+            $output = ['status'=>'success','message'=>'Data Save Successfully','table'=> 1,'modal'=>1];
+            return response()->json($output);
+        }catch(Exception $e){
+            $output = ['status'=>'error','message'=> $e->getMessage(),'table'=> 1,'modal'=>1];
+            return response()->json($output);
+        }        
+    }
+
+    // Edit Galary Menu Info
+    public function editSubMenu($id){
+        $data = GalarySubMenu::findOrFail($id);
+        $galaryMenus = GalaryMenu::where('publicationStatus',1)->get();
+        return view('backEnd.galary.partial.createSubMenu',['data' => $data,'galaryMenus'=> $galaryMenus]);
+    }
+
+    // Edit Galary Menu Info
+    public function deleteSubMenu($id){
+        $data = GalarySubMenu::findOrFail($id);
+        $data->delete();
+        $output = ['status'=>'success','message'=>'Data Delete Successfully','table'=> 1];
+        return response()->json($output);
+        
     }
 
 }

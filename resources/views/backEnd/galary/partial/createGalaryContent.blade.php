@@ -14,7 +14,7 @@
                 <div class="col-12 col-md-6">
                     <label>Select Menu <span class="text-danger">*</span></label>
                     <input type="hidden" name="id" value="{{isset($data->id)?$data->id:0}}">
-                    <select class=" form-control" name="galary_id" required>
+                    <select class=" form-control galary_id" name="galary_id" required>
                         <option value="" selected >Select Menu</option>
                         @foreach($galaryMenus as $menu)
                         <option value="{{$menu->id}}" {{isset($data->id) && $menu->id == $data->galary_id ? 'selected':null }}>{{$menu->menuName}}</option>
@@ -22,11 +22,15 @@
                     </select>                    
                 </div>
                 <div class="col-12 col-md-6">
-                    <label>Link </label>
-                    <input type="text" name="link" class=" form-control" value="{{isset($data->id)?$data->link:null}}">                    
+                    <label>Select Sub-Menu <span class="text-danger">*</span></label>
+                    <select class="form-control galary-menu" required name="galary_submenu_id" ></select>                                  
                 </div>
             </div>
             <div class="form-group row">
+                <div class="col-12 col-md-6">
+                    <label>Link </label>
+                    <input type="text" name="link" class=" form-control" value="{{isset($data->id)?$data->link:null}}">                    
+                </div>
                 <div class="col-12 col-md-6">
                     <label>Image</label>
                     <input type="file" class="form-control" name="image" {{isset($data->id)?'null':'required'}} accept="image/*" ><br>
@@ -44,3 +48,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.galary_id').change(function(){        
+        $.ajax({
+            url : '{{url('get/galary-menu')}}',
+            data: { id : $('.galary_id').val() },
+            success : function(data){
+                $('.galary-menu').html(data);
+            },
+            error : function (message) {
+                console.log(message.responseJSON);
+                errorMessage(message.responseJSON.message +' Error on line: '+message.responseJSON.line +'. '+ message.responseJSON.exception);
+                $('.modal').modal('hide');
+            },
+        });
+    });
+</script>

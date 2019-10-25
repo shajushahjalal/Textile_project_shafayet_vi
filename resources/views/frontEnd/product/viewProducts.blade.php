@@ -53,39 +53,31 @@
                             @foreach($products as $product)
                             <div class="mt-2 col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                 <div>
-                                    <a href="{{url('view/product/'.$product->productName)}}">
+                                    <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}">
                                         <img src="{{asset($product->image)}}" class=" img-fluid">
                                     </a>
                                 </div>
-                                <div class="text-center product-overlap-icons">
+                                {{-- <div class="text-center product-overlap-icons">
                                     <a href="#"> <i class="far fa-heart fa-lg"></i> </a> &nbsp; | &nbsp; 
                                     <a href="{{url('view/product/'.$product->productName)}}" title="view details"> <i class="far fa-eye fa-lg"></i> </a>
                                 </div>
                                 <div class="text-center">
                                     <a href="{{url('view/product/'.$product->productName)}}">{{$product->productName}} </a>
-                                </div>
+                                </div> --}}
                             </div>
                             @endforeach
                         </div>
                         <div class="row product-display-list d-none">
                             <div class="mt-2 col-12">
-                                @foreach($products as $product)
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <a href="{{url('view/product/'.$product->productName)}}">
+                                <div class="row">
+                                    @foreach($products as $product)                                
+                                    <div class="col-6 mt-2">
+                                        <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}">
                                             <img src="{{asset($product->image)}}" class=" img-fluid">
                                         </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="{{url('view/product/'.$product->productName)}}">
-                                            {{$product->productName}}
-                                        </a><br>
-                                        <a href="{{url('view/product/'.$product->productName)}}">
-                                            <i class="far fa-eye fa-lg"></i> View Details
-                                        </a>
-                                    </div>
+                                    </div>                                
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>                            
                         </div>
                     </div>
@@ -121,10 +113,10 @@
                             @foreach($recentProducts as $product)
                             <div class="row mt-2">                                
                                 <div class="col-4">
-                                    <a href="{{url('view/product/'.$product->productName)}}"><img src="{{asset($product->image)}}" class=" img-fluid"></a>
+                                    <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}"><img src="{{asset($product->image)}}" class=" img-fluid"></a>
                                 </div>
                                 <div class="col-8">
-                                    <a href="{{url('view/product/'.$product->productName)}}" >{{$product->productName}}</a>
+                                    <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}" >{{$product->productName}}</a>
                                 </div>                               
                             </div>
                             @endforeach                            

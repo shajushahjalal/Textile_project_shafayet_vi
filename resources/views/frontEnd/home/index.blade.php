@@ -12,7 +12,7 @@
 <!-- Hero banner -->
 <div class="hero-banner hero-banner-bg-4">
     <div class="hero-banner-inside">
-        <video autoplay muted loop id="myVideo">
+        <video autoplay muted loop id="myVideo" style="opacity:.5;">
             <source src="{{asset(isset($sliderVideo->video)?$sliderVideo->video:'')}}" type="video/mp4">
         </video>
         <h4 class="banner-title "> TRENDLINK BD LTD</h4>	
@@ -29,13 +29,16 @@
                         <div class="owl-stage">
                             @foreach($feature_products as $feature)
                                 <div class="owl-item">
-                                    <div class="feature-item position-relative" style="background:url('{{$feature->image}}')">
+                                    <div style="padding:10px;">
                                         <div class="feature-item_content ">
+                                            <img src="{{asset($feature->image)}}" class=" img-fluid" style="height:250px;">
                                             <h4 class="feature-title">{{$feature->heading}}</h4>
                                             <div class="feature-content">
                                                 <p>{{$feature->text}}</p>
                                                 <br>
+                                                @if(!empty($feature->link))
                                                 <a href="{{url($feature->link)}}">{{$feature->buttonText}}</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -65,19 +68,19 @@
             <div class="mt-5 col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 ">
                 <div class="product-show text-center">
                     <div>
-                        <a href="{{url('view/product/'.$product->productName)}}">
+                        <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}">
                             <center>
                                 <img src="{{asset($product->image)}}" class=" img-fluid">
                             </center>
                         </a>
                     </div>
-                    <div class="text-center product-overlap-icons">
+                    {{-- <div class="text-center product-overlap-icons">
                         <a href="#"> <i class="far fa-heart fa-lg"></i> </a> &nbsp; | &nbsp; 
                         <a href="{{url('view/product/'.$product->productName)}}" title="view details"> <i class="far fa-eye fa-lg"></i> </a>
                     </div>
                     <div class="text-center mt-10">
                         <a href="{{url('view/product/'.$product->productName)}}">{{$product->productName}} </a>
-                    </div>
+                    </div> --}}
                 </div>                
             </div>
             @endforeach

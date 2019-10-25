@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     // View Product Details
-    public function viewProductDetails($pnm){
-        $product = Product::where('productName','=',$pnm)->first();
+    public function viewProductDetails($id, $pnm){
+        $product = Product::where('productName','=',$pnm)->where('id',$id)->first();
         if( !empty($product) ){
-            $related_products = Product::where('products.publicationStatus',1)
+            $related_products = Product::where('products.publicationStatus',1)->where('is_delete',0)
                 ->where('categoryId',$product->categoryId)->orderBy('id','DESC')->paginate(12);
             return view('frontEnd.product.productDetails',['product' => $product,'products'=>$related_products]);
         }else{
@@ -45,7 +45,7 @@ class ProductController extends Controller
                 $seo_data =  SubCategory::where('subCategoryName','=',$scnm)->first();
             }
         $products = $products->select('products.*')->paginate(40);
-        $recentProducts = Product::where('products.publicationStatus',1)->orderBy('id','DESC')->paginate(10);
+        $recentProducts = Product::where('products.publicationStatus',1)->orderBy('id','DESC')->where('products.is_delete',0)->paginate(10);
 
         $title = $cnm .( !empty($scnm)?' | '.$scnm:'');
         return view('frontEnd.product.viewProducts',['products'=>$products,'title' => $title,'seo_data' => $seo_data,'recentProducts' => $recentProducts]);

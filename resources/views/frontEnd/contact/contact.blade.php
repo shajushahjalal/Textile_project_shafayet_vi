@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-12 text-center text-uppercase black-text mt-20 mb-20"><h4>Get In Touch</h4></div>
                 <div class="col-12">
-                    {!! Form::open(['route'=>'contact_message_send','class'=> 'form-horizontal','method'=>'post','files'=>true]) !!}
+                    {!! Form::open(['route'=>'contact_message_send','class'=> 'form-horizontal','method'=>'post','files'=>true,'id'=>'ajax-form']) !!}
                     <div class="form-group row">
                         <div class="col-12 col-sm-6">
                             <label>Name <span class="text-danger">*</span></label>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary text-uppercase">Send</button>
+                            <button type="submit" id="submit" class="btn btn-primary text-uppercase">Send</button>
                         </div>
                     </div>
                     {!! Form::close() !!}

@@ -119,7 +119,7 @@
                 { data: 'date', name: 'date' }
             ],
             "lengthMenu": [[50, 100, 500,1000, -1], [50, 100, 500,1000, "All"]],
-            "order": [[ 4, "ASC" ]] 
+            "order": [[ 0, "ASC" ]] 
         }); 
     });
 </script>

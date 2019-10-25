@@ -44,14 +44,13 @@ class VisitorCountMiddleware
     protected function storeVisitorData($request, $ck = null){
         $agent = new Agent();
         $data = new VisitorHistory();
-        $user = new User();
         $data->ip = $request->ip();
         if($ck){
             $data->browser = $agent->browser().$agent->version($agent->browser());
             $data->device =  $agent->isDesktop() == 1?'Desktop':$agent->device();
             $data->os = $agent->platform().'-'.$agent->version($agent->platform());
             try{
-                $data->countryCode = $user->getLocation($request->ip());
+                $data->countryCode = $this->getCountry($request->ip());
             }catch(Exception $ex){
                 $data->countryCode = null;
             }  
@@ -60,5 +59,14 @@ class VisitorCountMiddleware
         $data->date = Carbon::now()->format('Y-m-d');
         $data->save();
         return $data;
+    }
+
+    protected function getCountry($ip){
+        $url = "http://ip-api.com/json/".$ip;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $data = json_decode(curl_exec($ch));
+        return $data->country.','.$data->city;
     }
 }

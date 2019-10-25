@@ -38,18 +38,27 @@
         <div class="col-12 mt-4">
         <div class="portfolio_menu justify-content-center">
             <ul>
-                <li class="active" data-filter="*">All</li>
+                <li class="active" onclick="hideMenu()" data-filter="*">All</li>
                 @foreach($galaryMenus as $menu)
-                <li data-filter=".{{str_replace([',','-'],'',$menu->menuName)}}">{{$menu->menuName}}</li>
+                <li data-filter=".{{str_replace([',','-',"''"],'',$menu->menuName)}}" onclick="showMenu('{{str_replace([',','-',"''"],'',$menu->menuName)}}')">{{$menu->menuName}}</li>
                 @endforeach               
+            </ul>
+        </div>
+        <div class="portfolio_menu justify-content-center">
+            <ul class="sub-menu">
+                @foreach($galaryMenus as $menu)
+                    @foreach($menu->galarySubMenu as $subMenu)
+                    <li data-filter=".{{str_replace([',','-',"''"],'',$subMenu->subMenuName)}}" class ="d-none {{str_replace([',','-',"''"],'',$menu->menuName)}}" >{{$subMenu->subMenuName}}</li>
+                    @endforeach  
+                @endforeach             
             </ul>
         </div>
         </div>
         <div class="portfolio_item ">
             <div class="row">   
                 @foreach($galaryMenus as $menu)  
-                    @foreach($menu->galaryContent as $items)          
-                    <div class="col-sm-6 col-md-3 col-xl-4 item {{str_replace([',','-'],'',$menu->menuName)}}">
+                    @foreach($menu->galaryContent as $items)    
+                    <div class="col-sm-6 col-md-3 col-xl-4 item {{str_replace([',','-'],'',$items->subMenu->subMenuName)}} {{str_replace([',','-'],'',$items->galary->menuName)}}">
                         <img class="img-fluid" src="{{$items->image}}">
                     </div>
                     @endforeach
@@ -60,5 +69,17 @@
 </div>
 <!-- gallery end -->
 </div>
+
+
+<script>
+    function showMenu(menu_name){
+        $('.sub-menu li').addClass('d-none');
+        $('.'+menu_name).removeClass('d-none');
+    }
+
+    function hideMenu(){
+        $('.sub-menu li').addClass('d-none');
+    }
+</script>
 
 @endsection

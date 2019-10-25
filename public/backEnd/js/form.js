@@ -53,23 +53,25 @@ $(function(){
     
     $(document).on('click','.ajax-click',function(e){
         e.preventDefault();
-        $.ajax({
-            url : $(this).attr('href'),
-            method : 'GET',
-            success : function(output){                
-                if(output.status == 'success'){
-                    successMessage(output.message);                
-                }else{
-                    errorMessage(output.message)
+        if(confirm('Are you Sure ???')){
+            $.ajax({
+                url : $(this).attr('href'),
+                method : 'GET',
+                success : function(output){                
+                    if(output.status == 'success'){
+                        successMessage(output.message);                
+                    }else{
+                        errorMessage(output.message)
+                    }
+                    if(output.table == 1){
+                        table.ajax.reload();
+                    }                                 
+                },
+                error : function (){
+                    errorMessage();
                 }
-                if(output.table == 1){
-                    table.ajax.reload();
-                }                                 
-            },
-            error : function (){
-                errorMessage();
-            }
-        });
+            });
+        }
     });
 
     $(document).on('click','.ajax-click-page',function(e){
