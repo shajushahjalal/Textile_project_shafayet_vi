@@ -22,11 +22,13 @@ Route::middleware(['IsInstalled','visitor'])->group(function(){
     Route::get('/','HomeController@index'); 
     Route::get('schedule/run','HomeController@scheduleRun'); 
     Route::get('gallery','HomeController@showGalary');
-    //Route::get('load/galary/submenu','HomeController@')
     Route::get('contact-us','HomeController@showContactPage');
     Route::post('contact-us','HomeController@sendContactMessage')->name('contact_message_send');
     Route::get('our-clients/','HomeController@showClientPage');
     Route::get('about-us/','HomeController@showAboutUSPage');
+    Route::get('certificate/','HomeController@showCertificatePage');
+    Route::get('voyager-apparels/','HomeController@ShowVoyagerApparels');
+    Route::get('farseeing-knit-composite/','HomeController@showFarseeing');
     
     
     /*--------------------------------------------------------------------------

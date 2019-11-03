@@ -35,7 +35,7 @@
 <div class="contact-section mb-15 pb-15  " id="bottom">
     <div class="container">             
         <div class="row ">
-            <div class="col-md-7 col-sm-12 pt-1 mt-5 mb-5">
+            <div class="col-lg-9 col-md-7 col-sm-12 pt-1 mt-5 mb-5">
                 <div>
                     {!! isset($about->id)?$about->text:null !!}
                 </div>
@@ -43,17 +43,24 @@
                     <img class="mt-30" src="{{$about->image}}" alt="signatrure">
                 @endif 
             </div>
-            <div class="col-md-5 col-sm-12 pt-1 mt-5 mb-5 ">
-                <div class="our-product" style=" background: #D3B08B; color: white; height: 358px; width: 249px; padding: 23px;">
-                    @foreach($categories as $category)
-                        @if($category->haveSubCategory == 1)
-                            @foreach($category->subCategory as $subCategory)
-                            <a class="nav-link" href="{{url('view-category/'.$category->categoryName.'/'.$subCategory->subCategoryName)}}"> {{$subCategory->subCategoryName}} </a>
-                            @endforeach
-                        @else
-                        <a class="nav-link" href="{{url('view-category/'.$category->categoryName)}}"">{{$category->categoryName}}</a>
-                        @endif
-                    @endforeach
+            <div class="col-lg-3 col-md-5 col-sm-12 pt-1 mt-5 mb-5 ">
+                <div class="row">
+                    <div class="col-12 mt-4 mb-4 text-black">
+                        <h4 class=" text-uppercase">Recent Uploaded</h4>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="col-12 text-black">
+                    @foreach($recentProducts as $product)
+                    <div class="row mt-2">                                
+                        <div class="col-4">
+                            <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}"><img src="{{asset($product->image)}}" class=" img-fluid"></a>
+                        </div>
+                        <div class="col-8">
+                            <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}" >{{$product->productName}}</a>
+                        </div>                               
+                    </div>
+                    @endforeach                            
                 </div>
             </div>                  
         </div>

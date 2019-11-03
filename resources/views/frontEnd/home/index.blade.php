@@ -85,6 +85,11 @@
             </div>
             @endforeach
         </div>
+        <div class="row">
+            <div class="col-12 text-right">
+                {{$products->links()}}
+            </div>
+        </div>
     </div> 
 </div>
 

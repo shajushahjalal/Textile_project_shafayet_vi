@@ -36,13 +36,12 @@ class HomeController extends Controller
     protected $index;
 
      // FrontEnd Home Page
-    public function index()
-    {
+    public function index(){
         $prams['feature_products'] = FeatureProduct::where('publicationStatus',1)->orderBy('position','ASC')->get();
         $prams['brands'] = Branding::all();
         $prams['slider']  = Slider::where('publicationStatus',1)->get();
         $prams['sliderVideo'] = SliderVideo::first();
-        $prams['products'] = Product::where('publicationStatus',1)->where('is_delete',0)->orderBy('id','desc')->paginate(20);
+        $prams['products'] = Product::where('publicationStatus',1)->where('is_delete',0)->orderBy('id','desc')->paginate(28);
         $prams['goals'] = Goal::first();
         $prams['goals_content'] = GoalsContent::all();
         $prams['is_home'] = true;
@@ -92,9 +91,8 @@ class HomeController extends Controller
     public function showAboutUSPage(){
         $prams['about'] = AboutUs::first();
         $prams['managements'] = Management::all();
-        $prams['categories'] = Category::where('publicationStatus',1)->orderBy('position','ASC')->get();
         $prams['services'] = Services::all();
-
+        $prams['recentProducts'] = Product::where('publicationStatus',1)->orderBy('id','DESC')->where('products.is_delete',0)->paginate(5);
         return view('frontEnd.other.aboutus',$prams);
     }
 
@@ -119,6 +117,18 @@ class HomeController extends Controller
         }
     }
 
-  
+    //Show Certificate Page
+    public function showCertificatePage(){
+        return view('frontEnd.other.certificate');
+    }
+
+    // Show Voyager Apparels 
+    public function ShowVoyagerApparels(){
+        return view('frontEnd.other.voyagerApparels');
+    }
+
+    public function showFarseeing(){
+        return view('frontEnd.other.farseeing');
+    }
    
 }

@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-12 col-sm-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-lg-9">
                         <div class="row">
                             <div class="col-12 mt-3 mb-3 text-black">
                                 <span class="grid-show btn btn-default"><i class="fas fa-th-large"></i></span>
@@ -52,7 +52,7 @@
                         <div class="row product-display-gird">
                             @foreach($products as $product)
                             <div class="mt-2 col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                <div>
+                                <div class="product-show text-center">
                                     <a href="{{url('view/product/'.$product->id.'/'.$product->productName)}}">
                                         <img src="{{asset($product->image)}}" class=" img-fluid">
                                     </a>
@@ -80,10 +80,15 @@
                                 </div>
                             </div>                            
                         </div>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                {{$products->links()}}
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Right Side Bar -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-lg-3">
                         <div class="row">
                             <div class="col-12 mt-4 mb-4 text-black">
                                 <h4 class=" text-uppercase">Category</h4>

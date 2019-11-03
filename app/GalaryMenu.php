@@ -8,11 +8,11 @@ class GalaryMenu extends Model
 {
     //
     public function galaryContent(){
-        return $this->hasMany(GalaryContent::class,'galary_id','id');
+        return $this->hasMany(GalaryContent::class,'galary_id','id')->orderBy('id','ASC');
     }
 
     public function galarySubMenu(){
-        return $this->hasMany(GalarySubMenu::class,'galary_menu_id');
+        return $this->hasMany(GalarySubMenu::class,'galary_menu_id')->orderBy('id','ASC');
     }
 
 }

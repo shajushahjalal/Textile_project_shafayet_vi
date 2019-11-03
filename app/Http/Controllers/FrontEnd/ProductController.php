@@ -44,8 +44,8 @@ class ProductController extends Controller
                 $products->where('sub_categories.subCategoryName','=',$scnm);  
                 $seo_data =  SubCategory::where('subCategoryName','=',$scnm)->first();
             }
-        $products = $products->select('products.*')->paginate(40);
-        $recentProducts = Product::where('products.publicationStatus',1)->orderBy('id','DESC')->where('products.is_delete',0)->paginate(10);
+        $products = $products->select('products.*')->paginate(28);
+        $recentProducts = Product::where('products.publicationStatus',1)->orderBy('id','DESC')->where('products.is_delete',0)->paginate(20);
 
         $title = $cnm .( !empty($scnm)?' | '.$scnm:'');
         return view('frontEnd.product.viewProducts',['products'=>$products,'title' => $title,'seo_data' => $seo_data,'recentProducts' => $recentProducts]);

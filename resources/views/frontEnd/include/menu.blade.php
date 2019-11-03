@@ -53,9 +53,16 @@
                                     <li><a href="{{url('view-category/'.$category->categoryName)}}"> {{$category->categoryName}} </a></li>
                                 @endif   
                             @endforeach
-                            <li><a href="{{url('gallery')}}"> Gallery </a></li>                            
+                            <li><a href="{{url('gallery')}}"> Gallery </a></li> 
+                            <li class=""><a href="javascript:;">Manufacturing</a>
+                                <ul class="list-unstyled" >                               
+                                    <li><a href="{{url('/voyager-apparels')}}"> Voyager Apparels LTD </a></li> 
+                                    <li><a href="{{url('/farseeing-knit-composite')}}"> Farseeing Knit Composite LTD </a></li>                                
+                                </ul>
+                            </li>                           
                             <li><a href="{{url('about-us')}}" >About Us</a></li>
                             <li><a href="{{url('our-clients')}}">Clients</a></li>
+                            <li><a href="{{url('certificate')}}">Certification</a></li>
                             <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                         </ul>
                     </nav>
