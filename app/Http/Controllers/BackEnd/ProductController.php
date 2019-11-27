@@ -24,7 +24,7 @@ class ProductController extends Controller
             $data = DB::table('products')
                     ->leftjoin('categories','categories.id','=','products.categoryId')
                     ->where('products.is_delete','=',0)
-                    ->select('products.*','categories.categoryName')->get();
+                    ->select('products.*','categories.categoryName')->orderBy('position','ASC')->get();
             return DataTables::of($data)
                     ->addColumn('index',function(){
                         $this->index++;
@@ -89,6 +89,7 @@ class ProductController extends Controller
         $data->sellingPriceWithDiscount = $request->sellingPriceWithDiscount;
         $data->publicationStatus = $request->publicationStatus;
         $data->description = $request->description;
+        $data->position = $request->position;
         $data->video = $request->video;
         $data->create_by = Auth::user()->id;
         $data->image = $this->UploadImage($request,'image', $this->productDir, null, 320 , $data->image);

@@ -75,7 +75,7 @@
                     @foreach($services as $service)
                     <div class="grid mt-30 col-sm-6" style=" display: flex">
                         <div style="display: flex;"> 
-                        <img src="{{url($service->image)}}" width="50" height="50"> 
+                        <img src="{{url($service->image)}}" height="50"> 
                             <div class="ml-2">
                                 <h6 class="mb-2">{{$service->heading}} </h6> 
                                 <p style="line-height: 30px;" >

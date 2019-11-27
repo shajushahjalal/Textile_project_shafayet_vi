@@ -46,7 +46,7 @@
                 
                 <div class="form-group">
                     <label>Position</label>
-                    <input type="number" name="position" value="{{isset($slider->id)?$slider->position:'0'}}" class="form-control"  placeholder="https://something/something">                          
+                    <input type="number" name="position" value="{{isset($slider->id)?$slider->position:'0'}}" class="form-control"  placeholder="https://something/something" required>                          
                 </div>
                 <div class="form-group">
                     <label>Publication Status</label>
@@ -55,7 +55,11 @@
                         <option value="1" selected >Published</option>
                         <option value="0" {{isset($slider->publicationStatus) && $slider->publicationStatus ==0?'selected':''}}>Unpublished</option>
                     </select>                       
-                </div>                
+                </div>  
+                <div class="form-group">
+                    <label>Position</label>
+                    <input type="file" name="image"  class="form-control" {{ !isset($slider->id) ? 'required' : null }} >                          
+                </div>              
                 <div class="form-group">
                     <button type="submit" name="btn" class="btn btn-primary form-control"> Save </button>             
                 </div>
@@ -72,15 +76,16 @@
                 <table class="table table-responsive table-striped">
                     <tr>
                         <th>#</th>
+                        <th>Image</th>
                         <th>Text</th>
                         <th>Position</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    <?php $i=1;?>
                     @foreach($sliders as $slider)
                         <tr>
-                            <td>{{$i++}}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td> <img src="{{ asset($slider->image) }}" height="70"> </td>
                             <td>{{$slider->text}}</td>
                             <td>{{$slider->position}}</td>
                             <td>{{$slider->publicationStatus ==1 ? 'Published':'Unpublished'}}</td>                        

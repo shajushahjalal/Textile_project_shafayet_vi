@@ -128,7 +128,7 @@ class GalaryController extends Controller
             $data->galary_id = $request->galary_id;
             $data->galary_submenu_id = $request->galary_submenu_id;
             $data->link = $request->link;
-            $data->image = $this->UploadImage($request, 'image', $this->galaryImage, null, 250, $data->image);
+            $data->image = $this->UploadImage($request, 'image', $this->galaryImage, null, 300, $data->image);
             $data->save();
             $output = ['status'=>'success','message'=>'Data Save Successfully','table'=> 1,'modal'=>1];
             return response()->json($output);

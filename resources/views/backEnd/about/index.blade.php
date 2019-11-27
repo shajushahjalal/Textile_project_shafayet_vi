@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
                     {!! Form::close() !!}

@@ -17,14 +17,14 @@
                     <!-- First row --> 
                     <div class="col-12 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <label>Product Name*</label>
+                            <label>Product Name<span class="text-danger">*</span></label>
                             <input type="hidden" value="{{$data->id}}" name="id">
                             <input type="text" value="{{$data->productName}}" name="productName" placeholder="Product Name" class="form-control" autocomplete="off" autofocus required>
                         </div>
                     </div>
                     <div class="col-6 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <label>Category*</label>
+                            <label>Category<span class="text-danger">*</span></label>
                             <select name="categoryId" id="category" class="form-control" required>
                                 <option value="" selected> Select Category </option>
                                 @foreach($allCategories as $category)
@@ -45,19 +45,19 @@
                     <!-- second row --> 
                     <div class="col-6 col-sm-3 col-md-3">
                         <div class="form-group">
-                            <label>Buy Price*</label>
+                            <label>Buy Price<span class="text-danger">*</span></label>
                             <input type="text" name="buyPrice" value="{{$data->buyPrice}}" class="form-control" required >
                         </div>
                     </div>
                     <div class="col-6 col-sm-3 col-md-3">
                         <div class="form-group">
-                            <label>Selling Price*</label>
+                            <label>Selling Price<span class="text-danger">*</span></label>
                             <input type="text"  name="sellingPrice" value="{{$data->sellingPrice}}" class="form-control" required  >
                         </div>
                     </div>
                     <div class="col-6 col-sm-3 col-md-3">
                         <div class="form-group">
-                            <label>Discount selling Price*</label>
+                            <label>Discount selling Price<span class="text-danger">*</span></label>
                             <input type="text" name="sellingPriceWithDiscount" value="{{$data->sellingPriceWithDiscount}}" class="form-control" required  >
                         </div>
                     </div> 
@@ -69,21 +69,27 @@
                     </div>
 
                     <!-- Third row --> 
-                    <div class="col-sm-4 col-md-4 col-6">
+                    <div class="col-sm-3 col-6">
                         <div class="form-group">
                             <label>Meta Tag</label>
                             <input type="text" name="metaTag"  value="{{$data->metaTag}}" placeholder="Meta Tag" class="form-control" autocomplete="off" >
                         </div>
                     </div>                    
-                    <div class="col-12 col-sm-5 col-md-5">
+                    <div class="col-12 col-sm-3">
                         <div class="form-group">
                             <label>Video(Use Ifrem Src)</label>
                             <input type="text" name="video" value="{{$data->video}}" class="form-control" placeholder="video source">
                         </div>            
                     </div>
-                    <div class="col-6 col-sm-3 col-md-3">
+                    <div class="col-12 col-sm-3">
+                            <div class="form-group">
+                            <label>Position <span class="text-danger">*</span></label>
+                            <input type="number" name="position" class="form-control" value="{{$data->position}}" min="1" required >
+                        </div>            
+                    </div> 
+                    <div class="col-6 col-sm-3">
                         <div class="form-group">
-                            <label>Publication Status*</label>
+                            <label>Publication Status<span class="text-danger">*</span></label>
                             <select name="publicationStatus" class="form-control" required>
                                 <option value="1" selected > Published </option>
                                 <option value="0" {{$data->publicationStatus ==0 ?'selected':''}} > Unpublished </option>

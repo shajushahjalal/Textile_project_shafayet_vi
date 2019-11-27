@@ -238,7 +238,7 @@ Route::middleware(['IsInstalled','IsAdmin'])->group( function(){
         Route::get('about/service/create','BackEnd\AboutUsController@createService');
         Route::get('about/service/list','BackEnd\AboutUsController@serviceList');
         Route::post('about/service/create','BackEnd\AboutUsController@serviceStore');
-        Route::get('about/service/edit/{id}','BackEnd\ClientController@editServiceList');
+        Route::get('about/service/edit/{id}','BackEnd\AboutUsController@editServiceList');
         Route::get('about/service/delete/{id}','BackEnd\AboutUsController@deleteServiceList');
 
         Route::get('about/management','BackEnd\AboutUsController@management');

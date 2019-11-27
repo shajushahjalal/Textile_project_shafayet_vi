@@ -39,9 +39,9 @@ class HomeController extends Controller
     public function index(){
         $prams['feature_products'] = FeatureProduct::where('publicationStatus',1)->orderBy('position','ASC')->get();
         $prams['brands'] = Branding::all();
-        $prams['slider']  = Slider::where('publicationStatus',1)->get();
+        $prams['sliders']  = Slider::where('publicationStatus',1)->get();
         $prams['sliderVideo'] = SliderVideo::first();
-        $prams['products'] = Product::where('publicationStatus',1)->where('is_delete',0)->orderBy('id','desc')->paginate(28);
+        $prams['products'] = Product::where('publicationStatus',1)->where('is_delete',0)->orderBy('position','ASC')->paginate(28);
         $prams['goals'] = Goal::first();
         $prams['goals_content'] = GoalsContent::all();
         $prams['is_home'] = true;

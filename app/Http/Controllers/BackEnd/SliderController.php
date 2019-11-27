@@ -30,6 +30,7 @@ class SliderController extends Controller
             DB::beginTransaction();
             $data->text = $request->text;
             $data->position = $request->position;
+            $data->image = $this->UploadImage($request, 'image', $this->sliderDir, '1000', null, $data->image);
             $data->publicationStatus = $request->publicationStatus;            
             $data->save();
             DB::commit();

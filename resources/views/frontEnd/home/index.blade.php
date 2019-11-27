@@ -10,14 +10,60 @@
 @section('mainPart')
 
 <!-- Hero banner -->
-<div class="hero-banner hero-banner-bg-4">
+{{-- <div class="hero-banner hero-banner-bg-4">
     <div class="hero-banner-inside">
         <video autoplay muted loop id="myVideo" style="opacity:.5;">
             <source src="{{asset(isset($sliderVideo->video)?$sliderVideo->video:'')}}" type="video/mp4">
         </video>
         <h4 class="banner-title "> TRENDLINK BD LTD</h4>	
     </div>
-</div>
+</div> --}}
+ 
+<!-- Image Slider --> 
+@php $i=$j=0; @endphp
+<div class="container-fluid px-0">
+    <div class="bd-example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @foreach($sliders as $slider)
+                    @if($i == 0 )
+                        <li data-target="#carouselExampleCaptions" data-slide-to="{{$i++}}" class="active"></li>
+                    @else
+                        <li data-target="#carouselExampleCaptions" data-slide-to="{{$i++}}"></li>
+                    @endif
+                @endforeach	
+            </ol>
+            <div class="carousel-inner">
+                @foreach($sliders as $slider)
+                    @if($j == 0 )
+                    <div class="carousel-item active">
+                        <img src="{{asset($slider->image)}}" class="d-block w-100" style="max-height:500px;" alt="Slider Image">
+                        <div class="carousel-caption d-none d-sm-block">
+                            <p>{{$slider->text}}</p>
+                        </div>
+                    </div>                                
+                    @else
+                    <div class="carousel-item">
+                        <img src="{{asset($slider->image)}}" class="d-block w-100" style="max-height:500px;" alt="Slider Image">
+                        <div class="carousel-caption d-none d-sm-block">
+                            <p>{{$slider->text}}</p>
+                        </div>
+                    </div>                               
+                    @endif
+                    @php $j++; @endphp
+                @endforeach
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div> 
         
  <!-- feature section start -->
  <div class="feature-section mt-60">
@@ -271,4 +317,12 @@
             </div>
             <!-- container end -->
     </div> <!-- client section end -->
+@stop
+@section('script')
+    <script>
+        $('.carousel').carousel({
+          interval: 3000,
+          pause : false
+        })
+    </script>
 @endsection

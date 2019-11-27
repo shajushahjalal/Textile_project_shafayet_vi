@@ -17,11 +17,11 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-12 col-sm-4">
-                                <label>Product Name*</label>
+                                <label>Product Name<span class="text-danger">*</span></label>
                                 <input type="text" name="productName" placeholder="Product Name" class="form-control" autocomplete="off" autofocus required>
                             </div>
                             <div class="col-6 col-sm-4">
-                                <label>Category*</label>
+                                <label>Category<span class="text-danger">*</span></label>
                                 <select name="categoryId" id="category" class="form-control" required>
                                     <option value="" selected> Select Category </option>
                                     @foreach($allCategories as $category)
@@ -41,19 +41,19 @@
                         <div class="row">                    
                             <div class="col-6 col-sm-3">
                                 <div class="form-group">
-                                    <label>Buy Price*</label>
+                                    <label>Buy Price <span class="text-danger">*</span></label>
                                     <input type="text" name="buyPrice" value="0" class="form-control" required >
                                 </div>
                             </div>
                             <div class="col-6 col-sm-3">
                                 <div class="form-group">
-                                    <label>Selling Price*</label>
+                                    <label>Selling Price <span class="text-danger">*</span></label>
                                     <input type="text" name="sellingPrice" value="0" class="form-control" required  >
                                 </div>
                             </div>
                             <div class="col-6 col-sm-3">
                                 <div class="form-group">
-                                    <label>Discount selling Price*</label>
+                                    <label>Discount selling Price <span class="text-danger">*</span></label>
                                     <input type="text" name="sellingPriceWithDiscount" value="0" class="form-control" required  >
                                 </div>
                             </div> 
@@ -68,20 +68,26 @@
                          
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-sm-4 col-6">
+                            <div class="col-sm-3 col-6">
                                 <div class="form-group">
                                     <label>Meta Tag</label>
                                     <input type="text" name="metaTag" placeholder="Meta Tag" class="form-control" autocomplete="off" >
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-4">
+                            <div class="col-12 col-sm-3">
                                  <div class="form-group">
                                     <label>Video(Use Ifrem Src)</label>
                                     <input type="text" name="video" class="form-control" placeholder="video source">
                                 </div>            
                             </div> 
-                            <div class="col-6 col-sm-4">
-                                <label>Publication Status*</label>
+                            <div class="col-12 col-sm-3">
+                                 <div class="form-group">
+                                    <label>Position <span class="text-danger">*</span></label>
+                                    <input type="number" name="position" class="form-control" value="1" min="1" required >
+                                </div>            
+                            </div> 
+                            <div class="col-6 col-sm-3">
+                                <label>Publication Status <span class="text-danger">*</span></label>
                                 <select name="publicationStatus" class="form-control" required>
                                     <option value="1" selected > Published </option>
                                     <option value="0" > Unpublished </option>
@@ -108,7 +114,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6 col-sm-4">
-                                <label>Product Image*</label><br>
+                                <label>Product Image <span class="text-danger">*</span></label><br>
                                 <input type="file" name="image" accept="image/*" required>   
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
@@ -117,11 +123,11 @@
                                 @enderror                           
                             </div>
                             <div class="col-6 col-sm-4">
-                                <label>Product Image1*</label><br>
+                                <label>Product Image1 </label><br>
                                 <input type="file" name="image1" accept="image/*" >
                             </div>
                             <div class="col-6 col-sm-4">
-                                <label>Product Image2*</label><br>
+                                <label>Product Image2 </label><br>
                                 <input type="file" name="image2" accept="image/*" >
                             </div> 
                         </div>
@@ -129,11 +135,11 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6 col-sm-4">
-                                <label>Product Image3*</label><br>
+                                <label>Product Image3</label><br>
                                 <input type="file" name="image3" accept="image/*" >
                             </div>
                             <div class="col-6 col-sm-4">
-                                <label>Product Image4*</label><br>
+                                <label>Product Image4</label><br>
                                 <input type="file" name="image4" accept="image/*" >
                             </div> 
                             <div class="col-6 col-sm-4">

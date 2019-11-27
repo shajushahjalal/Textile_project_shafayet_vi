@@ -25,6 +25,7 @@
                             <th>Buy Price</th>
                             <th>Selling Price</th>
                             <th>Discount Price</th>
+                            <th>Position</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -53,11 +54,12 @@
                 { data: 'buyPrice', name: 'buyPrice' },
                 { data: 'sellingPrice', name: 'sellingPrice' },
                 { data: 'sellingPriceWithDiscount', name: 'sellingPriceWithDiscount' },
+                { data: 'position', name: 'position' },
                 { data: 'publicationStatus', name: 'publicationStatus' },
                 { data: 'action', name: 'action' }
             ],
             "lengthMenu": [[25, 50, 100, 500,1000, -1], [25, 50, 100, 500,1000, "All"]],
-            "order": [[ 0, "desc" ]] 
+            // "order": [[ 9, "asc" ]] 
         });         
     });
     
